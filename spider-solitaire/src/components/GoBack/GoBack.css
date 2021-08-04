@@ -1,16 +1,19 @@
 :root {
-    --green:#076036;
+    --green:#016B02;
+    --white:#E8E8E6;
 }
 .go-back-button {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 50px;
-    border: 2px solid var(--green);
+    border: none;
+    outline: none;
     cursor: pointer;
-    margin-top: -50px;
-    margin-left: 50px;
     color:var(--green);
     font-weight: 700;
+    top: 25px;
+    left: 30px;
+    position: absolute;
 }
 .go-back-button:hover {
     box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.5);

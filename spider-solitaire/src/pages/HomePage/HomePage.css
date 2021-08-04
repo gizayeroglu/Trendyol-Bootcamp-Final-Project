@@ -1,14 +1,16 @@
 :root {
-    --green:#076036;
+    --green:#016B02;
+    --white:#E8E8E6;
 }
 .play-game-card {
    width: 350px;
    margin: auto;
-   margin-top: 100px;
    border-radius: 20px;
    overflow: hidden;
    cursor: pointer;
    box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.5);
+   margin-top:80px;
+   background-color: var(--white);
 }
 .play-game-card:hover {
    box-shadow: 0 5px 10px 7px rgba(0, 0, 0, 0.6);

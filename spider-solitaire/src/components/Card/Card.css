@@ -1,0 +1,33 @@
+:root {
+    --white:#E8E8E6;
+}
+
+.card-back { 
+    background: url("../../assets/card_back.png");
+    height: 150px;
+    width: 105px;
+    border-radius: 10px;
+    border: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    float: right;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.card-front {
+    height: 150px;
+    width: 105px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--white);
+    float: right;
+    margin-right: 30px;
+    cursor:pointer;
+    background: url('../../assets/club.png') var(--white);
+    color: black;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+}

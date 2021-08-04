@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 
 import Header from '../../components/Header/Header';
-import spiderSolitaire from '../../assets/spidersolitare.jpg';
+import spiderSolitaire from '../../assets/spiderSolitaire.jpg';
 import '../HomePage/HomePage.css';
 
 function HomePage(){
