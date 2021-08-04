@@ -1,11 +1,25 @@
 import './Card.css';
-import React from 'react';
+import React, { useState } from 'react';
 
-function Card(){
+function Card({content}){
+ const [isUp, setIsUp] = useState(false);
+
+ const makeCardUp = () => {
+    setIsUp(true);
+ }
+
+ let classes = "card-back";
+
+ if(isUp) {
+    classes = "card-front";
+ }
+
     return(
     <>
-        <div className='card-front'></div>
-        <div className='card-back'></div>
+        <div className={classes} onClick={makeCardUp}>
+            <span className="content-left-top">{content}</span>
+            <span className="content-right-bottom">{content}</span>
+        </div>
     </>
     )
 }

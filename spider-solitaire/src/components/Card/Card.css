@@ -11,11 +11,10 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    float: right;
-    margin-right: 30px;
     cursor: pointer;
+    color: transparent; /* it gives opportunity to not see the number of the cards when they closed*/
+    margin-top: -100px; /*!?? it is not the best practice */
 }
-
 .card-front {
     height: 150px;
     width: 105px;
@@ -23,11 +22,26 @@
     border: none;
     background-color: var(--white);
     float: right;
-    margin-right: 30px;
     cursor:pointer;
     background: url('../../assets/club.png') var(--white);
     color: black;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 30%;
+    position: relative;
+    margin-top: -100px; /*!?? it is not the best practice */
+}
+.card-front .content-left-top{
+    top: 5px;
+    left: 5px;
+    position: absolute;
+    font-size: 17px;
+    font-weight: 700;
+}
+.card-front .content-right-bottom{
+    bottom: 5px;
+    right: 5px;
+    position: absolute;
+    font-size: 17px;
+    font-weight: 700;
 }

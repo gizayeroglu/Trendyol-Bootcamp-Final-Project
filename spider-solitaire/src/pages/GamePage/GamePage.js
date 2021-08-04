@@ -8,7 +8,9 @@ function GamePage(){
     <>
         <Header />
         <GoBack />
-        <CardHolder />
+        <div className= "game-area-container">
+          <CardHolder />
+        </div>
     </>
     );
 }
