@@ -1,5 +1,6 @@
 :root {
     --white:#E8E8E6;
+    --black:#000;
 }
 
 .card-back { 
@@ -30,6 +31,9 @@
     background-size: 30%;
     position: relative;
     margin-top: -100px; /*!?? it is not the best practice */
+}
+.card-front:active {
+    box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.4);
 }
 .card-front .content-left-top{
     top: 5px;

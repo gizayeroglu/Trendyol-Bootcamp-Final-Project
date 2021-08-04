@@ -2,34 +2,14 @@ import './CardHolder.css';
 import React from 'react';
 import Card from '../Card/Card';
 
-function CardHolder(){
-    const cardRank = [
-        'K',
-        'Q',
-        'J',
-        '10',
-        '9',
-        '8',
-        '7',
-        '6',
-        '5',
-        '4',
-        '3',
-        '2',
-        'A',
-    ];
-
-    const deck = cardRank
-    .concat(cardRank)
-    .sort(() => Math.random() - 0.5);
-
+function CardHolder({ cards = [] }){
     return(
-        deck.map((f) => {
+        cards.map((card, index) => {
           return(
             <>
-              <Card content={f}/>
+              <Card key={index} content={card} />
             </>
-            )
+          )
         })
     )
 }
