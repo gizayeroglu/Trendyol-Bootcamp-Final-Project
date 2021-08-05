@@ -3,49 +3,64 @@
     --black:#000;
 }
 
-.card-back { 
-    background: url("../../assets/card_back.png");
+.card {
     height: 150px;
     width: 105px;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
+    margin-top: -110px;  /***************/
+}
+.card-back { 
+    background: url("../../assets/card_back.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    cursor: pointer;
     color: transparent; /* it gives opportunity to not see the number of the cards when they closed*/
-    margin-top: -100px; /*!?? it is not the best practice */
 }
+.card-back > .content-left-top img,
+.card-back > .content-right-bottom img {
+    display: none;
+} 
 .card-front {
-    height: 150px;
-    width: 105px;
-    border-radius: 10px;
-    border: none;
     background-color: var(--white);
-    float: right;
-    cursor:pointer;
     background: url('../../assets/club.png') var(--white);
-    color: black;
+    color: var(--black);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 30%;
     position: relative;
-    margin-top: -100px; /*!?? it is not the best practice */
+    box-shadow: 0 -2px 5px 0 rgba(0,0,0,0.8);
 }
 .card-front:active {
-    box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.6);
 }
-.card-front .content-left-top{
+.card-front .content-left-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     top: 5px;
     left: 5px;
     position: absolute;
     font-size: 17px;
     font-weight: 700;
 }
-.card-front .content-right-bottom{
+.card-front .content-right-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     bottom: 5px;
     right: 5px;
     position: absolute;
     font-size: 17px;
     font-weight: 700;
+    -moz-transform: scale(1, -1);
+    -webkit-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    -ms-transform: scale(1, -1);
+    transform: scale(1, -1);
+}
+.content-left-top img,
+.content-right-bottom img {
+    width: 15px;
 }

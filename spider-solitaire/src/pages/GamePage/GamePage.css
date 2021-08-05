@@ -1,7 +1,11 @@
+.card-holder-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 130px; /***************/
+}
 .game-area-container{
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    align-items: center;
+    justify-content: center;
     justify-items: center;
-    margin-top: 150px; /*? */
 }

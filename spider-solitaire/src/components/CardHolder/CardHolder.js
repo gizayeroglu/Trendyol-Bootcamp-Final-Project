@@ -7,7 +7,7 @@ function CardHolder({ cards = [] }){
         cards.map((card, index) => {
           return(
             <>
-              <Card key={index} content={card} />
+             <Card key={index} content={card} isLastCard={index === (cards.length-1)}/>
             </>
           )
         })

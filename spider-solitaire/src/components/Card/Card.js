@@ -1,24 +1,18 @@
 import './Card.css';
 import React, { useState } from 'react';
+import cardImage from '../../assets/club.png';
 
-function Card({content}){
-  const [isUp, setIsUp] = useState(false);
+function Card({content, isLastCard}){
+  
+  const [isUp, setIsUp] = useState(isLastCard ? true : false);
 
-  const makeCardUp = () => {
-      setIsUp(true);
-  }
-
-  let classes = "card-back";
-
-  if(isUp) {
-      classes = "card-front";
-  }
+  const classes = isUp ? "card card-front" : "card card-back";
 
   return(
     <>
-      <div className={classes} onClick={makeCardUp} draggable onDragOver={(e) => e.preventDefault()}>
-        <span className="content-left-top">{content}</span>
-        <span className="content-right-bottom">{content}</span>
+      <div className={classes} draggable onDragOver={(e) => e.preventDefault()} onDragEnd={() => console.log("sürükleme")}>
+        <span className="content-left-top">{content}<img src={cardImage} alt="club"/></span>
+        <span className="content-right-bottom">{content}<img src={cardImage} alt="club"/></span>
       </div>
     </>
   )

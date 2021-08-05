@@ -34,16 +34,20 @@ function GamePage(){
       cardHolders[cardHolderIndex].push(cardRank[symbolIndex]);
       count++
     }
-    
+
     return(
     <>
         <Header />
         <GoBack />
-        <div className="game-area-container"> 
+        <div className="game-area-container">
           {cardHolders.map((cards, index) => {
-            return <CardHolder key={index} cards={cards}/>
+            return (
+            <div className="card-holder-container">
+              <CardHolder key={index} cards={cards}/>
+            </div>
+            )
           })}
-        </div>
+        </div>  
     </>
     );
 }
