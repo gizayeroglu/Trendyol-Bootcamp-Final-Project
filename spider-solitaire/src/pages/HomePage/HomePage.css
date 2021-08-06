@@ -1,39 +1,39 @@
 :root {
-    --green:#016B02;
-    --white:#E8E8E6;
+  --green:#016B02;
+  --white:#E8E8E6;
 }
 .play-game-card {
-   width: 350px;
-   margin: auto;
-   border-radius: 20px;
-   overflow: hidden;
-   cursor: pointer;
-   box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.5);
-   background-color: var(--white);
+  width: 350px;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.5);
+  background-color: var(--white);
 }
 .play-game-card:hover {
-   box-shadow: 0 5px 10px 7px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 5px 10px 7px rgba(0, 0, 0, 0.6);
 }
 .play-game-card img {
-   width: 350px;
-   border-bottom: 1px solid var(--yellow);
+  width: 350px;
+  border-bottom: 1px solid var(--yellow);
 }
 .play-game-card img {
-    -webkit-transition: all 1s ease; /* Safari and Chrome */
-    -moz-transition: all 1s ease; /* Firefox */
-    -ms-transition: all 1s ease; /* IE 9 */
-    -o-transition: all 1s ease; /* Opera */
-    transition: all 1s ease;
+  -webkit-transition: all 1s ease; /* Safari and Chrome */
+  -moz-transition: all 1s ease; /* Firefox */
+  -ms-transition: all 1s ease; /* IE 9 */
+  -o-transition: all 1s ease; /* Opera */
+  transition: all 1s ease;
 }
 .play-game-card:hover > img {
-    -webkit-transform:scale(1.2); /* Safari and Chrome */
-    -moz-transform:scale(1.2); /* Firefox */
-    -ms-transform:scale(1.2); /* IE 9 */
-    -o-transform:scale(1.2); /* Opera */
-     transform:scale(1.2);
+  -webkit-transform:scale(1.2); /* Safari and Chrome */
+  -moz-transform:scale(1.2); /* Firefox */
+  -ms-transform:scale(1.2); /* IE 9 */
+  -o-transform:scale(1.2); /* Opera */
+  transform:scale(1.2);
 }
 .card-text {
-    padding-bottom: 5px;
-    color: var(--green);
-    text-align: center;
+  padding-bottom: 5px;
+  color: var(--green);
+  text-align: center;
 }

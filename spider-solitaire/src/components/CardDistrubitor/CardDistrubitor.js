@@ -5,7 +5,7 @@ import './CardDistrubitor.css';
 function CardDistrubitor(){
   return (
     <>   
-      <div className="card-distrubitor-container">
+      <div className='card-distrubitor-container'>
       <Card />
       </div>
     </>

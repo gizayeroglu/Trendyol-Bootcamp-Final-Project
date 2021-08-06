@@ -1,11 +1,30 @@
-.card-holder-container{
-    display: flex;
-    flex-direction: column;
-    margin-top: 130px; /***************/
+:root {
+  --var:black;
 }
-.game-area-container{
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    justify-content: center;
-    justify-items: center;
+
+.card-holder-container {
+  display: flex;
+  flex-direction: column;
+}
+.game-area-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  justify-content: center;
+  justify-items: center;
+  margin-top: 150px; /*************************************************************************************************/
+}
+.game-completed-card-area {
+  height: 140px;
+	width: 100px;
+	border-radius: 10px;
+	border: 2px solid var(--black);
+}
+.game-area-top-containers {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-content: center;
+  justify-content: flex-end;
+  margin: 30px 30px;
+  margin-top: -50px;
 }

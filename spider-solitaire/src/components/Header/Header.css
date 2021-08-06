@@ -1,11 +1,11 @@
 :root {
-    --green:#076036;
-    --white:#E8E8E6;
+  --green:#076036;
+  --white:#E8E8E6;
 }
 
-.header{
-    color:var(--white);
-    text-align: center;
-    font-weight: 700;
-    font-size: 40px;
+.header {
+  color:var(--white);
+  text-align: center;
+  font-weight: 700;
+  font-size: 40px;
 }

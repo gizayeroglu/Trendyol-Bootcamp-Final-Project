@@ -1,26 +1,24 @@
 :root {
-    --green:#016B02;
-    --white:#E8E8E6;
+  --green:#016B02;
+  --white:#E8E8E6;
 }
 .go-back-button {
-    width: 70px;
-    height: 70px;
-    border-radius: 50px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color:var(--green);
-    font-weight: 700;
-    top: 25px;
-    left: 30px;
-    position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  top: 25px;
+  left: 30px;
+  position: relative;
 }
 .go-back-button:hover {
-    box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.5);
 }
 .go-back-icon {
-    width: 50px;
-    top: 10px;
-    right: 10px;
-    position: absolute;
+  width: 50px;
+  top: 10px;
+  right: 10px;
+  position: absolute;
 }

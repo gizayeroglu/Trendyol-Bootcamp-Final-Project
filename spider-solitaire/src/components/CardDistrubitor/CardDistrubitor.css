@@ -1,6 +1,5 @@
-.card-distrubitor-container{
-    display: flex;
-    align-items:flex-end;
-    justify-content: flex-end;
-    margin: 50px 30px;
+.card-distrubitor-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 100px; /*******************************************************************************/
 }
