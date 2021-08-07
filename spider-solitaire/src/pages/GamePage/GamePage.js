@@ -1,38 +1,37 @@
 import './GamePage.css';
+
+import React, { useState, useRef } from 'react';
 import GoBack from '../../components/GoBack/GoBack';
 import CardHolder from '../../components/CardHolder/CardHolder';
+import Card from '../../components/Card/Card';
 import CardDistrubitor from '../../components/CardDistrubitor/CardDistrubitor';
+import { getDeckData } from '../../utils/GameUtils';
+
+const data = getDeckData();
 
 function GamePage(){
-  const cardRank = [
-      'K',
-      'Q',
-      'J',
-      '10',
-      '9',
-      '8',
-      '7',
-      '6',
-      '5',
-      '4',
-      '3',
-      '2',
-      'A',
-  ];
+  const[deckData, setDeckData] = useState(data);
   
-  const cardHolders = [];
-  let count = 0;
+  const dragCard = useRef();
+  const dragCardHolder = useRef();
+  
+  const handleDragStart = (e, { cardHolderIndex, cardIndex }) => {
 
-  while(count < 54) {
-    const symbolIndex = Math.floor(Math.random() * 13);
-    const cardHolderIndex = count % 10;
+    dragCard.current = { cardHolderIndex, cardIndex };
+    dragCardHolder.current = e.target;
+    dragCardHolder.current.addEventListener('dragend', handleDragEnd);
 
-    if(!cardHolders[cardHolderIndex]) {
-      cardHolders[cardHolderIndex] = [];
-    }
+    setTimeout(() => {
+      e.target.style.display = "none";
+    }, 0);
+  }
 
-    cardHolders[cardHolderIndex].push(cardRank[symbolIndex]);
-    count++
+  const handleDragEnd = (e) => {
+    console.log('Ending Drag');
+    dragCardHolder.current.style.display = "block";
+    dragCardHolder.current.removeEventListener('dragend', handleDragEnd);
+    dragCard.current = null;
+    dragCardHolder.current = null;
   }
 
   return(
@@ -46,12 +45,19 @@ function GamePage(){
         <CardDistrubitor />
       </div>
       <div className='game-area-container'>
-        {cardHolders.map((cards, index) => {
-          return (
-          <div className='card-holder-container'>
-            <CardHolder key={index} cards={cards}/>
-          </div>
-          )
+        {deckData.map((cardHolder, cardHolderIndex) => {
+          return <CardHolder key={cardHolder.name}>
+                    {cardHolder.cards.map((card, cardIndex) => {
+                      const isLastCard = (cardHolder.cards.length - 1) === cardIndex;
+                      
+                      return <Card 
+                              key={`${cardHolderIndex}-${cardIndex}`} 
+                              onDragStart={(e) => handleDragStart(e, { cardHolderIndex, cardIndex })} 
+                              content={card} 
+                              isLastCard={isLastCard}
+                             />
+                    })}
+                 </CardHolder>
         })}
       </div>  
     </>

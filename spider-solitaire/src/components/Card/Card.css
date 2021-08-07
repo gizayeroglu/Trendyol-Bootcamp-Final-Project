@@ -10,16 +10,15 @@
 	border: none;
 	cursor: pointer;
   margin-top: -100%; /*******************************************************************************/
+  box-shadow: 0 -2px 5px 0 rgba(0,0,0,0.8);
 }
 .card-back { 
 	background: url("../../assets/card_back.png");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
-	color: transparent; /* it gives opportunity to not see the number of the cards when they closed*/
 }
-.card-back > .content-left-top img,
-.card-back > .content-right-bottom img {
+.card-back > span{
 	display: none;
 } 
 .card-front {
@@ -30,7 +29,6 @@
 	background-position: center;
 	background-size: 30%;
 	position: relative;
-	box-shadow: 0 -2px 5px 0 rgba(0,0,0,0.8);
 }
 .card-front:active {
 	box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.6);
