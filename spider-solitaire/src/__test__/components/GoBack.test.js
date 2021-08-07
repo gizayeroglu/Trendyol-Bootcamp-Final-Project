@@ -24,21 +24,5 @@ describe('GoBack component test', function () {
     const buttonTextCheck = wrapper.find('button').hasClass('go-back-button')
     expect(buttonTextCheck).toBeTruthy();
   })
-  
-//   describe('RouteNotFound', () => {
-//   it('Redirects to correct URL on click', () => {
-//     const mockHistoryPush = jest.fn();
-
-//   jest.mock('react-router-dom', () => ({
-//   ...jest.requireActual('react-router-dom'),
-//   useHistory: () => ({
-//     push: jest.fn()
-//   })
-// }));
-//     const button = wrapper.find('.go-back-button');
-//     button.simulate('click');
-//     expect(mockHistoryPush).toHaveBeenCalledWith('/');
-//   });
-// });
 });
 

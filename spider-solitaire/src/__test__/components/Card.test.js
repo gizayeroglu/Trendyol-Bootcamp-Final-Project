@@ -7,7 +7,7 @@ import Card from '../../components/Card/Card';
 configure({adapter: new Adapter()});
 
 
-describe('Header component test', function () {
+describe('Card component test', function () {
 
   let wrapper;
 
@@ -19,16 +19,17 @@ describe('Header component test', function () {
     expect(wrapper).toMatchSnapshot();
   })
   
-  // it('should have class name card-back if the given card prop false, card is not the last card in the holder line', function () {
-  //   const cardprop = jest.fn();
-  //   const wrapper = shallow(<Card props = { cardprop, false } />);
-  //   expect(wrapper.find('div').hasClass('card card-back')).toBeTruthy();
-  // });
+  it('should display card as open if is last card props is true', () => {
+    const isLastCard = true;
+    const component = shallow (<Card isLastCard={isLastCard} />);
+    let card = component.find('div');
+    expect(card.hasClass('card-front')).toBeTruthy();
+  })
 
-  // it('should have class name card-back if the given card prop false, card is not the last card in the holder line', function () {
-  //   const cardprop = jest.fn();
-
-  //   const wrapper = mount(<Card props = { cardprop, true } />);
-  //   expect(wrapper.find('div').hasClass('card card-front')).toBeTruthy();
-  // });
+  it('should display card as closed if is last card props is false', () => {
+    const isLastCard = false;
+    const component = shallow (<Card isLastCard={isLastCard} />);
+    let card = component.find('div');
+    expect(card.hasClass('card-back')).toBeTruthy();
+  })
 });
