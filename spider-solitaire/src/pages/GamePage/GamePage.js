@@ -44,12 +44,15 @@ function GamePage(){
       currentNode.style.display = "block";
       currentNode = currentNode.nextSibling;
     }
-
     dragCardHolder.current.removeEventListener('dragend', handleDragEnd);
     dragCard.current = null;
     dragCardHolder.current = null;
   }
-  
+
+  const dragging = (e) => {
+    console.log('dragging');
+  }
+
   const isValidDrop = (droppedCardHolderIndex, draggedCardHolderIndex, draggedCardIndex) => {
     const lastValOfDroppedHolder = deckData[droppedCardHolderIndex].cards[deckData[droppedCardHolderIndex].cards.length - 1].value;
     const draggedCardVal = deckData[draggedCardHolderIndex].cards[draggedCardIndex].value;
@@ -99,10 +102,17 @@ function GamePage(){
     console.log('Drag Over');
   }
 
+  let GameScore =  0; // for now just set the score some value  
   return(
     <>
       <GoBack />
       <div className='game-area-top-containers'>
+        <span className='score'><i class="fas fa-trophy"></i> Score: {GameScore} </span>
+        <span className='gameTime'><i class="fas fa-hourglass-half"></i> Time: {GameScore} </span>
+        <div className='game-completed-card-area'></div>
+        <div className='game-completed-card-area'></div>
+        <div className='game-completed-card-area'></div>
+        <div className='game-completed-card-area'></div>
         <div className='game-completed-card-area'></div>
         <div className='game-completed-card-area'></div>
         <div className='game-completed-card-area'></div>
@@ -117,6 +127,7 @@ function GamePage(){
                       return <Card 
                               key={`${cardHolderIndex}-${cardIndex}`} 
                               onDragStart={(e) => handleDragStart(e, { cardHolderIndex, cardIndex })} 
+                              dragging={(e) => dragging(e)}
                               isOpen={card.isOpen}
                               symbol={card.symbol}
                              />

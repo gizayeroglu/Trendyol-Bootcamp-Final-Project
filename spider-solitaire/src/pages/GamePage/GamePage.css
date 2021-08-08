@@ -1,5 +1,6 @@
 :root {
-  --var:black;
+  --blackColor:#000;
+  --iconColor: #ffb142;
 }
 
 .card-holder-container {
@@ -17,7 +18,7 @@
   height: 140px;
 	width: 100px;
 	border-radius: 10px;
-	border: 2px solid var(--black);
+	border: 2px solid var(--blackColor);
 }
 .game-area-top-containers {
   display: flex;
@@ -27,4 +28,15 @@
   justify-content: flex-end;
   margin: 30px 30px;
   margin-top: -50px;
+}
+.score i,
+.gameTime i { 
+  color:var(--iconColor);
+  font-size: 20px;
+}
+.score,
+.gameTime { 
+  font-size: 17px;
+  font-weight: 600;
+  font-style: italic;
 }
