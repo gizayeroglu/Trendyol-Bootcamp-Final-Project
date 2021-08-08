@@ -1,18 +1,18 @@
 export const getDeckData = () => {
   const cardRank = [
-      'K',
-      'Q',
-      'J',
-      '10',
-      '9',
-      '8',
-      '7',
-      '6',
-      '5',
-      '4',
-      '3',
-      '2',
       'A',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '10',
+      'J',
+      'Q',
+      'K'
   ];
   
   const data = [];
@@ -23,12 +23,17 @@ export const getDeckData = () => {
     const cardHolderIndex = count % 10;
 
     if(!data[cardHolderIndex]) {
-      const cardHolder = { name: `cardholder${cardHolderIndex+1}`, cards: [] };
+      const cardHolder = { name: `cardholder${cardHolderIndex}`, cards: [] };
       data[cardHolderIndex] = cardHolder;
     }
 
-    data[cardHolderIndex].cards.push(cardRank[symbolIndex]);
+    data[cardHolderIndex].cards.push({ symbol:cardRank[symbolIndex], isOpen:false, value:symbolIndex + 1 } );
     count++
+  }
+  
+  //Open last cards for every holder
+  for (const cardHolder of data) {
+    cardHolder.cards[cardHolder.cards.length - 1].isOpen = true; 
   }
 
   return data;

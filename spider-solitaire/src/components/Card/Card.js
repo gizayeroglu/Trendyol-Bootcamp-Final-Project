@@ -3,15 +3,14 @@ import './Card.css';
 import React from 'react';
 import cardImage from '../../assets/club.png';
 
-function Card({content, isLastCard, onDragStart}){
-  
-  let classes = isLastCard ? `card card-front` : `card card-back`;
+function Card({symbol, isOpen, onDragStart}){
+  let classes = isOpen ? `card card-front` : `card card-back`;
 
   return(
     <>
-      <div onDragStart={onDragStart} draggable={isLastCard} className={classes}>
-        <span className='content-left-top'>{content}<img src={cardImage} alt='club'/></span>
-        <span className='content-right-bottom'>{content}<img src={cardImage} alt='club'/></span>
+      <div onDragStart={onDragStart} draggable={isOpen} className={classes}>
+        <span className='content-left-top'>{symbol}<img src={cardImage} alt='club'/></span>
+        <span className='content-right-bottom'>{symbol}<img src={cardImage} alt='club'/></span>
       </div>
     </>
   )
