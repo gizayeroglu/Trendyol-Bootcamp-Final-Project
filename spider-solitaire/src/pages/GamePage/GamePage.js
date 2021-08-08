@@ -22,12 +22,12 @@ function GamePage(){
     dragCardHolder.current.addEventListener('dragend', handleDragEnd);
 
     setTimeout(() => {
-      e.target.style.display = "none";
+      e.target.style.display = 'none';
       
       let currentNode = e.target.nextSibling;
 
       while(currentNode) {
-        currentNode.style.display = "none";
+        currentNode.style.display = 'none';
         currentNode = currentNode.nextSibling;
       }
 
@@ -36,12 +36,12 @@ function GamePage(){
   
   const handleDragEnd = (e) => {
     console.log('Ending Drag');
-    dragCardHolder.current.style.display = "block";
+    dragCardHolder.current.style.display = 'block';
 
     let currentNode = dragCardHolder.current.nextSibling;
 
     while(currentNode) {
-      currentNode.style.display = "block";
+      currentNode.style.display = 'block';
       currentNode = currentNode.nextSibling;
     }
     dragCardHolder.current.removeEventListener('dragend', handleDragEnd);
@@ -105,10 +105,12 @@ function GamePage(){
   let GameScore =  0; // for now just set the score some value  
   return(
     <>
+      <div className='gameOutputs'>
+        <span className='score'><i class='fas fa-trophy'></i> Score: {GameScore} </span>
+        <span className='gameTime'><i class='fas fa-hourglass-half'></i> Time: {GameScore} </span>
+      </div>
       <GoBack />
       <div className='game-area-top-containers'>
-        <span className='score'><i class="fas fa-trophy"></i> Score: {GameScore} </span>
-        <span className='gameTime'><i class="fas fa-hourglass-half"></i> Time: {GameScore} </span>
         <div className='game-completed-card-area'></div>
         <div className='game-completed-card-area'></div>
         <div className='game-completed-card-area'></div>

@@ -1,5 +1,17 @@
 .card-distrubitor-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 100px; /*******************************************************************************/
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-right: 40px;
+}
+.distubitor-card { 
+	height: 105px;
+	width: 75px;
+	border-radius: 10px;
+	margin-right: -40px;
+	border: none;
+	cursor: pointer;
+	background: url("../../assets/card_back.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
 }

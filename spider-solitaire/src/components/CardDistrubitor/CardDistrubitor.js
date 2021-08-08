@@ -1,12 +1,17 @@
-import React from 'react';
-import Card from '../Card/Card';
 import './CardDistrubitor.css';
 
+import React from 'react';
+
 function CardDistrubitor(){
+
   return (
     <>   
       <div className='card-distrubitor-container'>
-      <Card />
+        <div className='distubitor-card'></div>
+        <div className='distubitor-card'></div>
+        <div className='distubitor-card'></div>
+        <div className='distubitor-card'></div>
+        <div className='distubitor-card'></div>
       </div>
     </>
   );

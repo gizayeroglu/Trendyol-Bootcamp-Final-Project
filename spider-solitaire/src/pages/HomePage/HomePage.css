@@ -1,6 +1,7 @@
 :root {
   --green:#016B02;
   --white:#E8E8E6;
+  --yellow: #ffb142;
 }
 .play-game-card {
   width: 350px;
@@ -10,6 +11,7 @@
   cursor: pointer;
   box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.5);
   background-color: var(--white);
+  border: 1px solid var(--yellow);
 }
 .play-game-card:hover {
   box-shadow: 0 5px 10px 7px rgba(0, 0, 0, 0.6);

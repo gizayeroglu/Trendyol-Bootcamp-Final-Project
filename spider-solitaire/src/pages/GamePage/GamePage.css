@@ -15,8 +15,8 @@
   margin-top: 150px; /*************************************************************************************************/
 }
 .game-completed-card-area {
-  height: 140px;
-	width: 100px;
+  height: 105px;
+	width: 75px;
 	border-radius: 10px;
 	border: 2px solid var(--blackColor);
 }
@@ -39,4 +39,13 @@
   font-size: 17px;
   font-weight: 600;
   font-style: italic;
+}
+.gameOutputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  border-bottom: 2px solid var(--iconColor);
+  padding: 10px;
+  margin-top: 10px;
 }

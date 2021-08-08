@@ -3,7 +3,8 @@ import './Card.css';
 import React from 'react';
 import cardImage from '../../assets/club.png';
 
-function Card({symbol, isOpen, onDragStart, dragging}){
+function Card({ symbol, isOpen, onDragStart, dragging }){
+
   let classes = isOpen ? `card card-front` : `card card-back`;
 
   return(

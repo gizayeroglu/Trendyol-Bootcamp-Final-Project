@@ -1,4 +1,5 @@
 import './GoBack.css';
+
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -11,7 +12,7 @@ function GoBack(){
 
     return(
       <button onClick={handleGoHome} className='go-back-button'>
-        <i class="fas fa-home"></i>
+        <i class='fas fa-home'></i>
       </button>
     )
 }
