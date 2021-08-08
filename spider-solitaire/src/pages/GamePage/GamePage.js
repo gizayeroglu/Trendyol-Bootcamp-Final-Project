@@ -23,12 +23,28 @@ function GamePage(){
 
     setTimeout(() => {
       e.target.style.display = "none";
+      
+      let currentNode = e.target.nextSibling;
+
+      while(currentNode) {
+        currentNode.style.display = "none";
+        currentNode = currentNode.nextSibling;
+      }
+
     }, 0);
   }
   
   const handleDragEnd = (e) => {
     console.log('Ending Drag');
     dragCardHolder.current.style.display = "block";
+
+    let currentNode = dragCardHolder.current.nextSibling;
+
+    while(currentNode) {
+      currentNode.style.display = "block";
+      currentNode = currentNode.nextSibling;
+    }
+
     dragCardHolder.current.removeEventListener('dragend', handleDragEnd);
     dragCard.current = null;
     dragCardHolder.current = null;
@@ -61,7 +77,8 @@ function GamePage(){
 
       const newDeckData = [...deckData];
       
-      const removedCards = newDeckData[draggedCardHolderIndex].cards.splice(draggedCardIndex, 1);
+      const removedCardsCount = newDeckData[draggedCardHolderIndex].cards.length - draggedCardIndex;
+      const removedCards = newDeckData[draggedCardHolderIndex].cards.splice(draggedCardIndex, removedCardsCount);
       
       //open last card of dragged holder
       const lastCard = newDeckData[draggedCardHolderIndex].cards[newDeckData[draggedCardHolderIndex].cards.length - 1];
