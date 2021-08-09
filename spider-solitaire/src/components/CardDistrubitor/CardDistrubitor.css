@@ -3,15 +3,15 @@
   grid-template-columns: repeat(5, 1fr);
   margin-right: 40px;
 }
-.distubitor-card { 
-	height: 109px;
-	width: 79px;
-	border-radius: 10px;
-	margin-right: -40px;
-	border: none;
-	cursor: pointer;
-	background: url("../../assets/card_back.png");
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
+.distubitor-card {
+  height: 109px;
+  width: 79px;
+  border-radius: 10px;
+  margin-right: -40px;
+  border: none;
+  cursor: pointer;
+  background: url("../../assets/card_back.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }

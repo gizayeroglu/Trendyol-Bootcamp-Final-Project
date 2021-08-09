@@ -1,6 +1,6 @@
-import '../Header/Header.css';
+import "../Header/Header.css";
 
-import React from 'react';
+import React from "react";
 
 function Header() {
   return <h1 className='header'>Spider Solitaire</h1>;

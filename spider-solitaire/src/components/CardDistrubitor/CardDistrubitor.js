@@ -1,17 +1,16 @@
-import './CardDistrubitor.css';
+import "./CardDistrubitor.css";
 
-import React from 'react';
+import React from "react";
 
-function CardDistrubitor(){
-
+function CardDistrubitor({ getNewCards }) {
   return (
-    <>   
+    <>
       <div className='card-distrubitor-container'>
-        <div className='distubitor-card'></div>
-        <div className='distubitor-card'></div>
-        <div className='distubitor-card'></div>
-        <div className='distubitor-card'></div>
-        <div className='distubitor-card'></div>
+        <div className='distubitor-card' onClick={(e) => getNewCards(e)}></div>
+        <div className='distubitor-card' onClick={(e) => getNewCards(e)}></div>
+        <div className='distubitor-card' onClick={(e) => getNewCards(e)}></div>
+        <div className='distubitor-card' onClick={(e) => getNewCards(e)}></div>
+        <div className='distubitor-card' onClick={(e) => getNewCards(e)}></div>
       </div>
     </>
   );

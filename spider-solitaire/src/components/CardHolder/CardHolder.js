@@ -1,16 +1,19 @@
-import './CardHolder.css';
+import "./CardHolder.css";
 
-import React from 'react';
+import React from "react";
 
-function CardHolder(props){
-    
-    const { onDrop, onDragOver } = props;
+function CardHolder(props) {
+  const { onDrop, onDragOver } = props;
 
-    return (
-     <div onDrop={onDrop} onDragOver={onDragOver} className='card-holder-container'>
+  return (
+    <div
+      onDrop={onDrop}
+      onDragOver={onDragOver}
+      className='card-holder-container'
+    >
       {props.children}
-     </div>
-    )
+    </div>
+  );
 }
 
 export default CardHolder;
