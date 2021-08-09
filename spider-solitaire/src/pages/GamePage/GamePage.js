@@ -106,8 +106,8 @@ function GamePage(){
   return(
     <>
       <div className='gameOutputs'>
-        <span className='score'><i class='fas fa-trophy'></i> Score: {GameScore} </span>
-        <span className='gameTime'><i class='fas fa-hourglass-half'></i> Time: {GameScore} </span>
+        <span className='score'><i className='fas fa-trophy'></i> Score: {GameScore} </span>
+        <span className='gameTime'><i className='fas fa-hourglass-half'></i> Time: {GameScore} </span>
       </div>
       <GoBack />
       <div className='game-area-top-containers'>

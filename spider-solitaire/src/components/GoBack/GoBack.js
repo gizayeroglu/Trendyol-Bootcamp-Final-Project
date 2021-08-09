@@ -12,7 +12,7 @@ function GoBack(){
 
     return(
       <button onClick={handleGoHome} className='go-back-button'>
-        <i class='fas fa-home'></i>
+        <i className='fas fa-home'></i>
       </button>
     )
 }
