@@ -18,7 +18,7 @@ describe("Header component test", function () {
   });
 
   it("should have a header text Spider Solitaire", function () {
-    expect(wrapper.find("h1").text()).toEqual("Spider Solitaire");
+    expect(wrapper.find("h1").text()).toEqual("Reversed Spider Solitaire");
   });
 
   it("should check class of h1 element", () => {

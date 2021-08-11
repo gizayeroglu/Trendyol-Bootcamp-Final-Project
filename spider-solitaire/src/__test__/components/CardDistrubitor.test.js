@@ -16,9 +16,4 @@ describe("Card Distrubitor component tests", () => {
   it("should render the card holder component", () => {
     expect(wrapper).toMatchSnapshot();
   });
-
-  it("should have a div with the className card-distrubitor-container", () => {
-    let div = wrapper.find("div");
-    expect(div.hasClass("card-distrubitor-container")).toBeTruthy();
-  });
 });

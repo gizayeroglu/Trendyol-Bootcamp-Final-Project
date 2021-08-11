@@ -18,15 +18,15 @@ describe("Card component test", function () {
   });
 
   it("should display card as open if is last card props is true", () => {
-    const isLastCard = true;
-    const component = shallow(<Card isLastCard={isLastCard} />);
+    const isOpen = true;
+    const component = shallow(<Card isOpen={isOpen} />);
     let card = component.find("div");
     expect(card.hasClass("card-front")).toBeTruthy();
   });
 
   it("should display card as closed if is last card props is false", () => {
-    const isLastCard = false;
-    const component = shallow(<Card isLastCard={isLastCard} />);
+    const isOpen = false;
+    const component = shallow(<Card isOpen={isOpen} />);
     let card = component.find("div");
     expect(card.hasClass("card-back")).toBeTruthy();
   });
