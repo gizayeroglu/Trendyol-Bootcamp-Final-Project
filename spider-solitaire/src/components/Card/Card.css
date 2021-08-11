@@ -4,17 +4,17 @@
 }
 
 .card {
-  height: 140px;
-  width: 100px;
+  height: 130px; /***140*/
+  width: 95px;/***100*/
   border-radius: 10px;
   border: none;
   cursor: pointer;
   box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.8);
   position: relative;
-  margin-top: -110px; /*********************************************************/
+  margin-top: -95px; /*******************************************************110**/
 }
 .card-back {
-  background: url("../../assets/card_back.png");
+  background: url("../../assets/spider-solitaire-card-back.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -24,7 +24,7 @@
 }
 .card-front {
   background-color: var(--white);
-  background: url("../../assets/club.png") var(--white);
+  background: url("../../assets/spider-solitaire-club-card.webp") var(--white);
   color: var(--black);
   background-repeat: no-repeat;
   background-position: center;
@@ -53,11 +53,7 @@
   position: absolute;
   font-size: 17px;
   font-weight: 700;
-  -moz-transform: scale(1, -1);
-  -webkit-transform: scale(1, -1);
-  -o-transform: scale(1, -1);
-  -ms-transform: scale(1, -1);
-  transform: scale(1, -1);
+  transform:rotate(180deg);
 }
 :is(.content-left-top, .content-right-bottom) img {
   width: 13px;
