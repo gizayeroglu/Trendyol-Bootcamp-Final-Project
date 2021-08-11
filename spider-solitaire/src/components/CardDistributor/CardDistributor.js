@@ -1,8 +1,8 @@
-import "./CardDistrubitor.css";
+import "./CardDistributor.css";
 
 import React from "react";
 
-function CardDistrubitor({ getNewCards }) {
+function CardDistributor ({ getNewCards }) {
   return (
     <>
       <div className='card-distrubitor-container'>
@@ -16,4 +16,4 @@ function CardDistrubitor({ getNewCards }) {
   );
 }
 
-export default CardDistrubitor;
+export default CardDistributor ;
