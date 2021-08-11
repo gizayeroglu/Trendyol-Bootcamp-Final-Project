@@ -9,8 +9,9 @@
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  margin-top: -100%; /*******************************************************************************/
   box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.8);
+  position: relative;
+  margin-top: -110px; /*********************************************************/
 }
 .card-back {
   background: url("../../assets/card_back.png");
@@ -58,7 +59,6 @@
   -ms-transform: scale(1, -1);
   transform: scale(1, -1);
 }
-.content-left-top img,
-.content-right-bottom img {
+:is(.content-left-top, .content-right-bottom) img {
   width: 13px;
 }
