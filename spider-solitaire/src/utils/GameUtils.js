@@ -32,6 +32,7 @@ export const getCardHoldersWithCards = (cardCount) => {
     data[cardHolderIndex].cards.push({
       symbol: cardRank[symbolIndex].rank,
       isOpen:false,
+      isDraggable:false,
       value: cardRank[symbolIndex].value
     });
 
@@ -42,6 +43,7 @@ export const getCardHoldersWithCards = (cardCount) => {
   //Open last cards for every holder
   for (const cardHolder of data) {
     cardHolder.cards[cardHolder.cards.length - 1].isOpen = true;
+    cardHolder.cards[cardHolder.cards.length - 1].isDraggable = true;
   }
 
   return data;

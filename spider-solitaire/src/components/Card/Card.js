@@ -3,12 +3,12 @@ import "./Card.css";
 import React from "react";
 import cardImage from "../../assets/spider-solitaire-club-card.webp";
 
-function Card({ symbol, isOpen, onDragStart }) {
+function Card({ symbol, isOpen, onDragStart, isDraggable }) {
   let classes = isOpen ? `card card-front` : `card card-back`;
 
   return (
     <>
-      <div onDragStart={onDragStart} draggable={isOpen} className={classes}>
+      <div onDragStart={onDragStart} draggable={isDraggable} className={classes}>
         <span className='content-left-top'>
           {symbol}
           <img src={cardImage} alt='spider solitaire club card icon' />
