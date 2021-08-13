@@ -1,6 +1,6 @@
 :root {
   --blackColor:#000;
-  --iconColor: #ffb142;
+  --primaryYellowColor: #ffb142;
   --white: #e8e8e6;
 }
 
@@ -11,22 +11,24 @@
   justify-items: center;
 }
 .game-completed-card-area {
-  height: 105px;
-	width: 75px;
+  height: 126px;
+  width: 91px;
 	border-radius: 10px;
 	border: 2px solid var(--blackColor);
+  margin-top: -95px;
 }
 .game-area-top-containers {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 15px;
   align-content: center;
   justify-content: center;
-  margin: 30px 30px;
-  margin-top: -50px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  position: relative;
 }
 :is(.score, .gameTime) i { 
-  color:var(--iconColor);
+  color:var(--primaryYellowColor);
   font-size: 20px;
 }
 .score,
@@ -40,14 +42,21 @@
   justify-content: center;
   align-items: center;
   gap: 100px;
-  border-bottom: 2px solid var(--iconColor);
+  border-bottom: 2px solid var(--primaryYellowColor);
   padding: 10px;
-  margin-top: 10px;
 }
-.game-completed-card-area.card-set-completed {
-  background: url("../../assets/spider-solitaire-club-card.webp") var(--white);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 50%;
-  position: relative;
+@media only screen and (max-width: 600px) {
+  .game-area-top-containers {
+    gap: 5px;
+    bottom: 0;
+    margin-bottom: 20px;
+    position: absolute;
+  }
+  .game-completed-card-area {
+    height: 70px;
+    width: 50px;
+    border-radius: 10px;
+    border: 2px solid var(--blackColor);
+    margin-top: -95px;
+  } 
 }

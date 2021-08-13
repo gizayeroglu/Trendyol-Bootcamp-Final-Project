@@ -1,10 +1,12 @@
 .card-distrubitor-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 20%); /*no grid area padding it fits content*/
+  align-items: flex-start;
+  grid-template-columns: repeat(auto-fill, 20%);
+  margin-top: -95px;
 }
 .distubitor-card {
-  height: 109px;
-  width: 79px;
+  height: 130px; /***140*/
+  width: 95px;/***100*/
   border-radius: 10px;
   border: none;
   cursor: pointer;
