@@ -48,3 +48,70 @@ export const getCardHoldersWithCards = (cardCount) => {
 
   return data;
 };
+
+export const checkSetOfCards = (cards) => {
+
+  if(cards.length < 13 || cards[cards.length-1].value !== 13) return {isScore: false, cards: cards};
+  
+  let cardsRanksForEachHolder = '';
+
+  for (const card of cards) {
+    cardsRanksForEachHolder += card.symbol;
+  }
+
+  const foundedCardIndex = cardsRanksForEachHolder.search(/A2345678910JQK/);
+  
+  if(foundedCardIndex === -1) return {isScore: false, cards: cards};
+
+  cards.splice(foundedCardIndex, foundedCardIndex + 13);
+  if(cards.length) cards[cards.length-1].isOpen=true;
+  if(cards.length) cards[cards.length-1].isDraggable=true;
+  
+  return {isScore: true, cards: cards};
+}
+
+export const isAnyCardHolderWithoutCards = (deckData) => {
+  for (const cardHolder of deckData) {
+    if(cardHolder.cards.length === 0) return true;
+  }
+
+  return false;
+}
+
+export const updateCardDraggable = (deckData) => {
+
+  for (const data of deckData) {
+    const cards = data.cards;
+
+    for(let i=cards.length-1; i>0; i--) {
+
+      const childNode = cards[i];
+      const parentNode = cards[i-1];
+
+      if(!parentNode || parentNode.isOpen !== true) continue;
+
+      if(childNode && parentNode.value + 1 === childNode.value && childNode.isDraggable === true) {
+        parentNode.isDraggable=true;
+      }else {
+        parentNode.isDraggable=false;
+      }
+    }
+
+    if(data.cards.length) data.cards[data.cards.length-1].isDraggable=true; 
+  }
+
+  return deckData;
+}
+
+export const isValidDrop = (deckData, droppedCardHolderIndex, draggedCardHolderIndex, draggedCardIndex) => {
+  if(deckData[droppedCardHolderIndex].cards.length === 0) return true;
+
+  const lastValOfDroppedHolder = deckData[droppedCardHolderIndex].cards[deckData[droppedCardHolderIndex].cards.length - 1].value;
+  const draggedCardVal = deckData[draggedCardHolderIndex].cards[draggedCardIndex].value;
+
+  if (deckData[draggedCardHolderIndex].cards[draggedCardIndex].isDraggable && draggedCardVal - 1 === lastValOfDroppedHolder ) {
+    return true;
+  }
+
+  return false;
+};

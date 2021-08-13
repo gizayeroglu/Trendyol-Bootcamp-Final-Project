@@ -6,7 +6,7 @@ import CardHolder from "../../components/CardHolder/CardHolder";
 import Card from "../../components/Card/Card";
 import CardDistributor from "../../components/CardDistributor/CardDistributor";
 import TimeUpCounter from "../../components/TimeUpCounter/TimeUpCounter";
-import { getCardHoldersWithCards } from "../../utils/GameUtils";
+import { getCardHoldersWithCards, checkSetOfCards, isAnyCardHolderWithoutCards, updateCardDraggable, isValidDrop } from "../../utils/GameUtils";
 
 const data = getCardHoldersWithCards(54);
 
@@ -48,19 +48,6 @@ function GamePage() {
     dragCardHolder.current = null;
   };
 
-  const isValidDrop = (droppedCardHolderIndex, draggedCardHolderIndex, draggedCardIndex) => {
-    if(deckData[droppedCardHolderIndex].cards.length === 0) return true;
-
-    const lastValOfDroppedHolder = deckData[droppedCardHolderIndex].cards[deckData[droppedCardHolderIndex].cards.length - 1].value;
-    const draggedCardVal = deckData[draggedCardHolderIndex].cards[draggedCardIndex].value;
-
-    if (deckData[draggedCardHolderIndex].cards[draggedCardIndex].isDraggable && draggedCardVal - 1 === lastValOfDroppedHolder ) {
-      return true;
-    }
-
-    return false;
-  };
-
   const handleDrop = (e, { cardHolderIndex }) => { 
     e.preventDefault();
 
@@ -68,7 +55,7 @@ function GamePage() {
     const draggedCardHolderIndex = dragCard.current.cardHolderIndex;
     const draggedCardIndex = dragCard.current.cardIndex;
 
-    const isValid = isValidDrop(droppedCardHolderIndex, draggedCardHolderIndex, draggedCardIndex);
+    const isValid = isValidDrop(deckData, droppedCardHolderIndex, draggedCardHolderIndex, draggedCardIndex);
 
     if (droppedCardHolderIndex !== draggedCardHolderIndex && isValid) {
       const newDeckData = [...deckData];
@@ -82,15 +69,16 @@ function GamePage() {
         lastCard.isOpen = true;
         lastCard.isDraggable=true;
       }
+      
+      const { isScore, cards } = checkSetOfCards([...newDeckData[droppedCardHolderIndex].cards, ...removedCards]);
+      newDeckData[droppedCardHolderIndex].cards = cards;
 
-      newDeckData[droppedCardHolderIndex].cards = [...newDeckData[droppedCardHolderIndex].cards, ...removedCards];
+      const updatedCardsData = updateCardDraggable(newDeckData);
+      setDeckData(updatedCardsData);
 
-      setDeckData(newDeckData);
+      if(isScore) setGameScore(gameScore + 300);
 
       dragCard.current = null;
-
-      const checkIfCardDraggable = isCardDraggable();
-      setDeckData(checkIfCardDraggable);
     }
   };
 
@@ -98,16 +86,8 @@ function GamePage() {
     e.preventDefault();
   };
 
-  const isAnyCardHolderWithoutCards = () => {
-    for (const cardHolder of deckData) {
-      if(cardHolder.cards.length === 0) return true;
-    }
-
-    return false;
-  }
-  
   const distributeNewCards = (e) => {
-    const isExist = isAnyCardHolderWithoutCards();
+    const isExist = isAnyCardHolderWithoutCards(deckData);
 
     if(isExist) {
       alert('There must be at least one card in each column before you can deal a new row cards !');
@@ -122,72 +102,22 @@ function GamePage() {
       const foundedHolder = newDeckData.find(el => el.name === data.name);
 
       if(foundedHolder) {
-        foundedHolder.cards = [...foundedHolder.cards, ...data.cards];
+        const { isScore, cards } = checkSetOfCards([...foundedHolder.cards, ...data.cards]);
+        foundedHolder.cards = cards;
+
+        if(isScore) setGameScore(gameScore + 300);
       } 
     }
       
-    setDeckData(newDeckData);
-    const checkIfCardDraggable = isCardDraggable();
-    setDeckData(checkIfCardDraggable);
+    const updatedCardsData = updateCardDraggable(newDeckData);
+    setDeckData(updatedCardsData);
   };
-
-  const isCardDraggable = () => {
-
-    const cardDraggableData = [...deckData];
-
-    for (const data of cardDraggableData) {
-      const cards = data.cards;
-
-      for(let i=cards.length-1; i>0; i--) {
-
-        let childNode = cards[i];
-        let parentNode = cards[i-1];
-
-        if(!parentNode || parentNode.isOpen !== true) continue;
-
-        if(childNode && parentNode.value + 1 === childNode.value && childNode.isDraggable === true) {
-         parentNode.isDraggable=true;
-        }else {
-          parentNode.isDraggable=false;
-        }
-      }
-      if(data.cards.length) data.cards[data.cards.length-1].isDraggable=true; 
-    }
-    return cardDraggableData;
-  }
-
-  const checkIfTheGameEnd = () => {
+  
+  useEffect(() => {
     if(gameScore === 2400){
       alert('Congrats !');
     }
-  }
-
-  useEffect(()=> {
-
-    const checkingDeckData = [...deckData];
-
-    for (const data of checkingDeckData) {
-      
-      if(data.cards.length < 13 || data.cards[data.cards.length-1].value !== 13) continue;
-      
-      let cardsRanksForEachHolder = '';
-  
-      for (const card of data.cards) {
-        cardsRanksForEachHolder += card.symbol;
-      }
-
-      const foundedCardIndex = cardsRanksForEachHolder.search(/A2345678910JQK/);
-        
-      if(foundedCardIndex !== -1){
-        data.cards.splice(foundedCardIndex, foundedCardIndex + 13);
-        setGameScore(gameScore => gameScore + 300);
-        if(data.cards.length) data.cards[data.cards.length-1].isOpen=true;
-        if(data.cards.length) data.cards[data.cards.length-1].isDraggable=true;
-        setDeckData(checkingDeckData);
-      }
-    }
-    checkIfTheGameEnd();
-  },[deckData]);
+  },[gameScore]); 
 
   return (
     <>
