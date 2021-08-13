@@ -32,17 +32,10 @@ function GamePage() {
         currentNode = currentNode.nextSibling;
       }
     }, 0);
-
-    // if(e.target.nextSibling){
-    //   e.target.nextSibling.style.paddingBottom = '150px';
-    // }
-
   };
 
   const handleDragEnd = (e) => {
-    console.log("Ending Drag");
     dragCardHolder.current.style.display = "block";
-    // dragCardHolder.current.style.paddingBottom = '0'; /******************* when drag end it returns white */
 
     let currentNode = dragCardHolder.current.nextSibling;
 
@@ -61,7 +54,7 @@ function GamePage() {
     const lastValOfDroppedHolder = deckData[droppedCardHolderIndex].cards[deckData[droppedCardHolderIndex].cards.length - 1].value;
     const draggedCardVal = deckData[draggedCardHolderIndex].cards[draggedCardIndex].value;
 
-    if (draggedCardVal - 1 === lastValOfDroppedHolder ) {
+    if (deckData[draggedCardHolderIndex].cards[draggedCardIndex].isDraggable && draggedCardVal - 1 === lastValOfDroppedHolder ) {
       return true;
     }
 
@@ -87,6 +80,7 @@ function GamePage() {
       const lastCard = newDeckData[draggedCardHolderIndex].cards[newDeckData[draggedCardHolderIndex].cards.length - 1];
       if (lastCard) {
         lastCard.isOpen = true;
+        lastCard.isDraggable=true;
       }
 
       newDeckData[droppedCardHolderIndex].cards = [...newDeckData[droppedCardHolderIndex].cards, ...removedCards];
@@ -94,6 +88,9 @@ function GamePage() {
       setDeckData(newDeckData);
 
       dragCard.current = null;
+
+      const checkIfCardDraggable = isCardDraggable();
+      setDeckData(checkIfCardDraggable);
     }
   };
 
@@ -101,33 +98,69 @@ function GamePage() {
     e.preventDefault();
   };
 
-  const isCardHolderHasCards = () => {
+  const isAnyCardHolderWithoutCards = () => {
     for (const cardHolder of deckData) {
-      if(cardHolder.cards.length === 0) return false;
+      if(cardHolder.cards.length === 0) return true;
     }
-    return true;
+
+    return false;
   }
+  
+  const distributeNewCards = (e) => {
+    const isExist = isAnyCardHolderWithoutCards();
 
-  const getNewCards = (e) => {
-    const getCards = isCardHolderHasCards();
+    if(isExist) {
+      alert('There must be at least one card in each column before you can deal a new row cards !');
+      return;
+    }
 
-    if(getCards) {
-      e.target.style.display = "none";
-      const distrubitedData = getCardHoldersWithCards(10);
-      const newDeckData = [...deckData];
-      
-      for (const data of distrubitedData) {
-        const foundedHolder = newDeckData.find(el => el.name === data.name);
+    e.target.style.display = "none";
+    const distrubitedData = getCardHoldersWithCards(10);
+    const newDeckData = [...deckData];
+    
+    for (const data of distrubitedData) {
+      const foundedHolder = newDeckData.find(el => el.name === data.name);
 
-        if(foundedHolder) foundedHolder.cards = [...foundedHolder.cards, ...data.cards];
-      }
+      if(foundedHolder) {
+        foundedHolder.cards = [...foundedHolder.cards, ...data.cards];
+      } 
+    }
       
     setDeckData(newDeckData);
-
-    }else {
-      alert('There must be at least one card in each column before you can deal a new row cards !');
-    }
+    const checkIfCardDraggable = isCardDraggable();
+    setDeckData(checkIfCardDraggable);
   };
+
+  const isCardDraggable = () => {
+
+    const cardDraggableData = [...deckData];
+
+    for (const data of cardDraggableData) {
+      const cards = data.cards;
+
+      for(let i=cards.length-1; i>0; i--) {
+
+        let childNode = cards[i];
+        let parentNode = cards[i-1];
+
+        if(!parentNode || parentNode.isOpen !== true) continue;
+
+        if(childNode && parentNode.value + 1 === childNode.value && childNode.isDraggable === true) {
+         parentNode.isDraggable=true;
+        }else {
+          parentNode.isDraggable=false;
+        }
+      }
+      if(data.cards.length) data.cards[data.cards.length-1].isDraggable=true; 
+    }
+    return cardDraggableData;
+  }
+
+  const checkIfTheGameEnd = () => {
+    if(gameScore === 2400){
+      alert('Congrats !');
+    }
+  }
 
   useEffect(()=> {
 
@@ -148,10 +181,13 @@ function GamePage() {
       if(foundedCardIndex !== -1){
         data.cards.splice(foundedCardIndex, foundedCardIndex + 13);
         setGameScore(gameScore => gameScore + 300);
+        if(data.cards.length) data.cards[data.cards.length-1].isOpen=true;
+        if(data.cards.length) data.cards[data.cards.length-1].isDraggable=true;
         setDeckData(checkingDeckData);
       }
     }
-  }, [deckData]);
+    checkIfTheGameEnd();
+  },[deckData]);
 
   return (
     <>
@@ -165,15 +201,15 @@ function GamePage() {
       </div>
       <GoBack />
       <div className='game-area-top-containers'>
-        <div className= {gameScore >= 300 ? 'game-completed-card-area card-set-completed' : 'game-completed-card-area'}></div>
-        <div className= {gameScore >= 600 ? 'game-completed-card-area card-set-completed' : 'game-completed-card-area'}></div>
-        <div className= {gameScore >= 900 ? 'game-completed-card-area card-set-completed' : 'game-completed-card-area'}></div>
-        <div className= {gameScore >= 1200 ? 'game-completed-card-area card-set-completed' : 'game-completed-card-area'}></div>
-        <div className= {gameScore >= 1500 ? 'game-completed-card-area card-set-completed' : 'game-completed-card-area'}></div>
-        <div className= {gameScore >= 1800 ? 'game-completed-card-area card-set-completed' : 'game-completed-card-area'}></div>
-        <div className= {gameScore >= 2100 ? 'game-completed-card-area card-set-completed' : 'game-completed-card-area'}></div>
-        <div className= {gameScore >= 2400 ? 'game-completed-card-area card-set-completed' : 'game-completed-card-area'}></div>
-        <CardDistributor  getNewCards={getNewCards} />
+         {gameScore >= 300 ? <Card isOpen='true' symbol='A' /> : <div className='game-completed-card-area'></div>}
+         {gameScore >= 600 ? <Card isOpen='true' symbol='A' /> : <div className='game-completed-card-area'></div>}
+         {gameScore >= 900 ? <Card isOpen='true' symbol='A' /> : <div className='game-completed-card-area'></div>}
+         {gameScore >= 1200 ? <Card isOpen='true' symbol='A' /> : <div className='game-completed-card-area'></div>}
+         {gameScore >= 1500 ? <Card isOpen='true' symbol='A' /> : <div className='game-completed-card-area'></div>}
+         {gameScore >= 1800 ? <Card isOpen='true' symbol='A' /> : <div className='game-completed-card-area'></div>}
+         {gameScore >= 2100 ? <Card isOpen='true' symbol='A' /> : <div className='game-completed-card-area'></div>}
+         {gameScore >= 2400 ? <Card isOpen='true' symbol='A' /> : <div className='game-completed-card-area'></div>}
+        <CardDistributor  getNewCards={distributeNewCards} />
       </div>
       <div className='game-area-container'>
         {deckData.map((cardHolder, cardHolderIndex) => {
@@ -185,6 +221,7 @@ function GamePage() {
                     key={`${cardHolderIndex}-${cardIndex}`}
                     onDragStart={(e) => handleDragStart(e, { cardHolderIndex, cardIndex })}
                     isOpen={card.isOpen}
+                    isDraggable={card.isDraggable}
                     symbol={card.symbol}
                   />
                 );
