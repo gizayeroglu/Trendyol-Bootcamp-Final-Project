@@ -40,6 +40,7 @@
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.9",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
+    "cypress": "^8.1.0",
     "enzyme": "^3.11.0",
     "jest": "^26.6.0"
   }
