@@ -115,12 +115,15 @@ function GamePage() {
   };
 
   useEffect(()=> {
+    const highestScore = localStorage.getItem('highestScore');
+    if(!highestScore) localStorage.setItem('highestScore', gameScore);
+    setHighestScore(localStorage.getItem('highestScore'));
+
     if(gameScore >= highestScore){
       localStorage.setItem('highestScore', gameScore);
+      setHighestScore(gameScore);
     }
-    const highestScoreFromStorage = localStorage.getItem('highestScore');
-    setHighestScore(highestScoreFromStorage);
-
+  
   },[gameScore, highestScore]);
 
   useEffect(() => {
