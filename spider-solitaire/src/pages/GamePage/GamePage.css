@@ -27,17 +27,18 @@
   margin-bottom: 30px;
   position: relative;
 }
-:is(.score, .gameTime) i { 
+:is(.score, .game-time, .highest-score) i { 
   color:var(--primaryYellowColor);
   font-size: 20px;
 }
 .score,
-.gameTime { 
+.game-time,
+.highest-score { 
   font-size: 17px;
   font-weight: 600;
   font-style: italic;
 }
-.gameOutputs {
+.game-outputs {
   display: flex;
   justify-content: center;
   align-items: center;

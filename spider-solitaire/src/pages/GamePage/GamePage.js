@@ -13,6 +13,7 @@ const data = getCardHoldersWithCards(54);
 function GamePage() {
   const [deckData, setDeckData] = useState(data);
   const [gameScore, setGameScore] = useState(0);
+  const [highestScore, setHighestScore] = useState(0);
 
   const dragCard = useRef();
   const dragCardHolder = useRef();
@@ -112,7 +113,16 @@ function GamePage() {
     const updatedCardsData = updateCardDraggable(newDeckData);
     setDeckData(updatedCardsData);
   };
-  
+
+  useEffect(()=> {
+    if(gameScore >= highestScore){
+      localStorage.setItem('highestScore', gameScore);
+    }
+    const highestScoreFromStorage = localStorage.getItem('highestScore');
+    setHighestScore(highestScoreFromStorage);
+
+  },[gameScore, highestScore]);
+
   useEffect(() => {
     if(gameScore === 2400){
       alert('Congrats !');
@@ -121,11 +131,14 @@ function GamePage() {
 
   return (
     <>
-      <div className='gameOutputs'>
+      <div className='game-outputs'>
         <span className='score'>
           <i className='fas fa-trophy'></i> Score: {gameScore}
         </span>
-        <span className='gameTime'>
+        <span className='highest-score'>
+          <i class="fas fa-dragon"></i> Highest Score: {highestScore}
+        </span>
+        <span className='game-time'>
           <i className='fas fa-hourglass-half'></i> <TimeUpCounter />
         </span>
       </div>
