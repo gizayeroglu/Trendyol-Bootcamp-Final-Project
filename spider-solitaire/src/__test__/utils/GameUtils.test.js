@@ -1,4 +1,3 @@
-import React from 'react';
 import { checkSetOfCards, isAnyCardHolderWithoutCards, updateCardDraggable, isValidDrop, getCardHoldersWithCards} from '../../utils/GameUtils';
 
 describe('Game Utils Tests', () => {
