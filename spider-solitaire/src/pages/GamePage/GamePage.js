@@ -14,6 +14,7 @@ function GamePage() {
   const [deckData, setDeckData] = useState(data);
   const [gameScore, setGameScore] = useState(0);
   const [highestScore, setHighestScore] = useState(0);
+  const [getBack, setGetBack] = useState({droppedCardHolderIndex:'', draggedCardHolderIndex:'', removedCardsCount:'' });
 
   const dragCard = useRef();
   const dragCardHolder = useRef();
@@ -80,8 +81,31 @@ function GamePage() {
       if(isScore) setGameScore(gameScore + 300);
 
       dragCard.current = null;
+
+      setGetBack({droppedCardHolderIndex:droppedCardHolderIndex, draggedCardHolderIndex:draggedCardHolderIndex, removedCardsCount:removedCardsCount });
     }
   };
+
+  const handleTakeBackCardMove = () => {
+    const droppedIndexBefore = getBack.droppedCardHolderIndex;
+    const draggedIndexBefore = getBack.draggedCardHolderIndex;
+    const removedCardsCount = getBack.removedCardsCount;
+
+    const newDeckData = [...deckData];
+
+    try {
+    const droppedIndexCards = newDeckData[droppedIndexBefore].cards;
+    const cardsThatDroppeddBefore = droppedIndexCards.splice(droppedIndexCards.length-removedCardsCount, droppedIndexCards.length-1);
+
+    newDeckData[draggedIndexBefore].cards = [...newDeckData[draggedIndexBefore].cards, ...cardsThatDroppeddBefore];
+    
+    const updatedCardsData = updateCardDraggable(newDeckData);
+    setDeckData(updatedCardsData);
+    }catch{
+      alert('You can only undo your last move');
+    }
+    setGetBack({droppedCardHolderIndex:'', draggedCardHolderIndex:'', removedCardsCount:''});
+  }
 
   const dragOver = (e) => {
     e.preventDefault();
@@ -116,7 +140,7 @@ function GamePage() {
 
   useEffect(()=> {
     const highestScore = localStorage.getItem('highestScore');
-    if(!highestScore) localStorage.setItem('highestScore', gameScore);
+    if(!highestScore) localStorage.setItem('highestScore', highestScore);
     setHighestScore(localStorage.getItem('highestScore'));
 
     if(gameScore >= highestScore){
@@ -128,7 +152,7 @@ function GamePage() {
 
   useEffect(() => {
     if(gameScore === 2400){
-      alert('Congrats !');
+      alert('Congrats ! 🔥');
     }
   },[gameScore]); 
 
@@ -139,11 +163,13 @@ function GamePage() {
           <i className='fas fa-trophy'></i> Score: {gameScore}
         </span>
         <span className='highest-score'>
-          <i class="fas fa-dragon"></i> Highest Score: {highestScore}
+          <i className="fas fa-dragon"></i> Highest Score: {highestScore}
         </span>
         <span className='game-time'>
           <i className='fas fa-hourglass-half'></i> <TimeUpCounter />
         </span>
+        <button className='undo-move-button' onClick={handleTakeBackCardMove}>Undo Last Move</button>
+        <button className='refresh-page-button' onClick={() => window.location.reload(false)}>Restart The Game</button>
       </div>
       <GoBack />
       <div className='game-area-top-containers'>

@@ -42,9 +42,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 100px;
   border-bottom: 2px solid var(--primaryYellowColor);
   padding: 10px;
+  gap:50px;
+}
+.undo-move-button,
+.refresh-page-button {
+  border-radius: 10px;
+  color: var(--blackColor);
+  padding:10px;
+  background-color: var(--primaryYellowColor);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
 }
 @media only screen and (max-width: 600px) {
   .game-area-top-containers {
