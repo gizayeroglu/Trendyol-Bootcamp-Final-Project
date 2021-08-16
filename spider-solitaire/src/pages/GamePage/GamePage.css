@@ -37,6 +37,9 @@
   font-style: italic;
   font-weight: 600;
 }
+.game-time {
+  min-width: 125px;
+}
 .game-outputs {
   display: flex;
   justify-content: center;
@@ -75,6 +78,9 @@
   .highest-score { 
     font-size: 13px;
   }
+  .game-time {
+    min-width: 100px;
+  }
   :is(.score, .game-time, .highest-score) i { 
     font-size: 14px;
   }
@@ -111,6 +117,9 @@
   .game-time,
   .highest-score { 
     font-size: 10px;
+  }
+  .game-time {
+    min-width: 65px;
   }
   :is(.score, .game-time, .highest-score) i { 
     font-size: 10px;

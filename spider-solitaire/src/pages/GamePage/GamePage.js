@@ -159,6 +159,7 @@ function GamePage() {
   return (
     <>
       <div className='game-outputs'>
+        <GoBack />
         <span className='score'>
           <i className='fas fa-trophy'></i> Score: {gameScore}
         </span>
@@ -169,9 +170,9 @@ function GamePage() {
           <i className='fas fa-hourglass-half'></i> <TimeUpCounter />
         </span>
         <button className='undo-move-button' onClick={handleTakeBackCardMove}>Undo Last Move</button>
-        <button className='refresh-page-button' onClick={() => window.location.reload(false)}>Restart The Game</button>
+        <button className='refresh-page-button' onClick={() => window.location.reload(false)}>Restart</button>
+        <button className='hint-button'>Hint</button>
       </div>
-      <GoBack />
       <div className='game-area-top-containers'>
          {gameScore >= 300 ? <Card isOpen='true' symbol='A' /> : <div className='game-completed-card-area'></div>}
          {gameScore >= 600 ? <Card isOpen='true' symbol='A' /> : <div className='game-completed-card-area'></div>}
@@ -195,6 +196,7 @@ function GamePage() {
                     isOpen={card.isOpen}
                     isDraggable={card.isDraggable}
                     symbol={card.symbol}
+                    isHiglighted={card.isHiglighted}
                   />
                 );
               })}

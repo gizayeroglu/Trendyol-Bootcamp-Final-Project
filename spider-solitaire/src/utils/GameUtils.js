@@ -33,6 +33,7 @@ export const getCardHoldersWithCards = (cardCount) => {
       symbol: cardRank[symbolIndex].rank,
       isOpen:false,
       isDraggable:false,
+      isHiglighted:false,
       value: cardRank[symbolIndex].value
     });
 

@@ -3,8 +3,9 @@ import "./Card.css";
 import React from "react";
 import cardImage from "../../assets/spider-solitaire-club-card.webp";
 
-function Card({ symbol, isOpen, onDragStart, isDraggable }) {
-  let classes = isOpen ? `card card-front` : `card card-back`;
+function Card({ symbol, isOpen, onDragStart, isDraggable, isHiglighted}) {
+
+  let classes = isHiglighted && isOpen ? 'card card-front highlighted' : isOpen ? 'card card-front' : 'card card-back';
 
   return (
     <>
