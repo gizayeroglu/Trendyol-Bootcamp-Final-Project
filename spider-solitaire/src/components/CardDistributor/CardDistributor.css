@@ -2,11 +2,11 @@
   display: grid;
   align-items: flex-start;
   grid-template-columns: repeat(auto-fill, 20%);
-  margin-top: -95px;
+  padding-right: 10px;
 }
 .distubitor-card {
-  height: 130px; /***140*/
-  width: 95px;/***100*/
+  height: 130px; 
+  width: 95px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
@@ -14,4 +14,27 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+@media only screen and (min-width:800px) and (max-width: 1200px) {
+  .distubitor-card {
+    height: 90px;
+    width: 65px;
+  }
+}
+
+@media only screen and (min-width:500px) and (max-width:800px) {
+  .distubitor-card {
+    height: 65px;
+    width: 45px;
+    border-radius: 5px;
+  }
+}
+
+@media only screen and (max-width:500px) {
+  .distubitor-card {
+    height: 50px;
+    width: 35px;
+    border-radius: 5px;
+  }
 }

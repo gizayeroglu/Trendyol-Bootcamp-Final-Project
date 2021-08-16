@@ -6,16 +6,15 @@
 
 .game-area-container {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
   justify-items: center;
+  margin-top: -100px;
 }
 .game-completed-card-area {
   height: 126px;
   width: 91px;
 	border-radius: 10px;
 	border: 2px solid var(--blackColor);
-  margin-top: -95px;
 }
 .game-area-top-containers {
   display: flex;
@@ -23,8 +22,8 @@
   gap: 15px;
   align-content: center;
   justify-content: center;
-  margin-top: 40px;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 25px;
   position: relative;
 }
 :is(.score, .game-time, .highest-score) i { 
@@ -34,9 +33,9 @@
 .score,
 .game-time,
 .highest-score { 
-  font-size: 17px;
-  font-weight: 600;
+  font-size: 16px;
   font-style: italic;
+  font-weight: 600;
 }
 .game-outputs {
   display: flex;
@@ -44,10 +43,11 @@
   align-items: center;
   border-bottom: 2px solid var(--primaryYellowColor);
   padding: 10px;
-  gap:50px;
+  gap: 50px;
 }
 .undo-move-button,
-.refresh-page-button {
+.refresh-page-button,
+.hint-button {
   border-radius: 10px;
   color: var(--blackColor);
   padding:10px;
@@ -56,19 +56,107 @@
   outline: none;
   cursor: pointer;
   font-weight: 600;
+  font-size: 16px;
+  font-style: italic;
 }
-@media only screen and (max-width: 600px) {
+
+@media only screen and (min-width:800px) and (max-width: 1200px) {
+  .game-completed-card-area {
+    height: 86px;
+    width: 61px;
+    min-width: 61px;
+  }
+  .game-outputs {
+    padding: 10px;
+    gap: 10px;
+  }
+  .score,
+  .game-time,
+  .highest-score { 
+    font-size: 13px;
+  }
+  :is(.score, .game-time, .highest-score) i { 
+    font-size: 14px;
+  }
+  .undo-move-button,
+  .refresh-page-button,
+  .hint-button {
+    padding: 5px;
+    font-size: 13px;
+  }
+  .game-area-container {
+    margin-left: 20px;
+  }
+}
+
+@media only screen and (min-width:500px) and (max-width:800px) {
+  .game-completed-card-area {
+    height: 61px;
+    width: 41px;
+    border-radius: 5px;
+  }
   .game-area-top-containers {
     gap: 5px;
-    bottom: 0;
-    margin-bottom: 20px;
-    position: absolute;
+    margin-right: 30px;
+    margin-bottom: 25px;
   }
+  .game-area-container {
+    margin-left: 40px;
+  }
+  .game-outputs {
+    padding: 10px;
+    gap: 5px;
+  }
+  .score,
+  .game-time,
+  .highest-score { 
+    font-size: 10px;
+  }
+  :is(.score, .game-time, .highest-score) i { 
+    font-size: 10px;
+  }
+  .undo-move-button,
+  .refresh-page-button,
+  .hint-button {
+    padding: 2px 5px;
+    font-size: 10px;
+  }
+  .game-area-container {
+    margin-left: 40px;
+  }
+}
+
+@media only screen and (max-width:500px) {
   .game-completed-card-area {
-    height: 70px;
-    width: 50px;
-    border-radius: 10px;
-    border: 2px solid var(--blackColor);
-    margin-top: -95px;
-  } 
+    height: 46px;
+    width: 31px;
+    border-radius: 5px;
+  }
+  .game-area-container {
+    margin-left: 40px;
+  }
+  .game-outputs {
+    padding: 5px;
+    gap: 5px;
+  }
+  .score,
+  .game-time,
+  .highest-score { 
+    font-size: 8px;
+  }
+  :is(.score, .game-time, .highest-score) i { 
+    font-size: 8px;
+  }
+  .undo-move-button,
+  .refresh-page-button,
+  .hint-button {
+    padding: 2px 5px;
+    font-size: 8px;
+  }
+  .game-area-top-containers {
+    gap: 5px;
+  }
+  .game-area-container {
+    margin-left: 50px;
+  }
 }

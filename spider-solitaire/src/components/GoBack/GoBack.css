@@ -1,37 +1,54 @@
 :root {
-  --green: #016b02;
   --white: #e8e8e6;
+  --blackColor:#000;
+  --primaryYellowColor: #ffb142;
 }
 .go-back-button {
-  width: 70px;
-  height: 70px;
-  border-radius: 50px;
+  border-radius: 10px;
+  color: var(--blackColor);
+  padding:10px;
+  background-color: var(--primaryYellowColor);
   border: none;
   outline: none;
   cursor: pointer;
-  top: 25px;
-  left: 30px;
-  position: relative;
+  font-weight: 600;
+  font-size: 16px;
+  font-style: italic;
 }
 .go-back-button:hover {
   box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.5);
 }
 .go-back-button i {
-  color: var(--green);
-  font-size: 40px;
+  color: var(--blackColor);
+  font-size: 20px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width:800px) and (max-width: 1200px) {
   .go-back-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 40px;
-    top: 10px;
-    left: 10px;
-    position: relative;
-    margin-bottom: 30px;
+    padding: 5px;
+    font-size: 13px;
   }
   .go-back-button i {
-    font-size: 20px;
+    font-size: 13px;
+  }  
+}
+
+@media only screen and (min-width:500px) and (max-width:800px) {
+  .go-back-button {
+    padding: 2px 5px;
+    font-size: 10px;
+  }
+  .go-back-button i {
+    font-size: 10px;
+  }  
+}
+
+@media only screen and (max-width:500px) {
+  .go-back-button {
+    padding: 2px 5px;
+    font-size: 8px;
+  }
+  .go-back-button i {
+    font-size: 8px;
   }  
 }

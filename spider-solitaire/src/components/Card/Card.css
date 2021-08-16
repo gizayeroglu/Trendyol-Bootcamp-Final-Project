@@ -1,6 +1,7 @@
 :root {
   --white: #e8e8e6;
   --black: #000;
+  --primaryYellowColor: #ffb142;
 }
 
 .card {
@@ -9,7 +10,8 @@
   border-radius: 10px;
   border: none;
   box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.8);
-  margin-top: -95px;
+  position: relative;
+  margin-bottom: -6.5vw;
 }
 .card-back {
   background: url("../../assets/spider-solitaire-card-back.webp");
@@ -28,7 +30,6 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 30%;
-  position: relative;
   cursor: pointer;
 }
 .card-front:active {
@@ -57,4 +58,78 @@
 }
 :is(.content-left-top, .content-right-bottom) img {
   width: 13px;
+}
+@keyframes highlightCard {
+  from {background-color: var(--white);}
+  to {background-color: var(--primaryYellowColor);}
+}
+.highlighted {
+  background-color: var(--white);
+  animation-name: highlightCard;
+  animation-duration: 1s;
+}
+
+@media only screen and (min-width:800px) and (max-width: 1200px) {
+  .card {
+    height: 90px;
+    width: 65px;
+    margin-bottom: -6vw;
+  }
+  .card-front {
+    background-size: 22%;
+  }
+  .card-front .content-left-top {
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .card-front .content-right-bottom {
+    font-size: 13px;
+    font-weight: 700;
+    transform:rotate(180deg);
+  } 
+  :is(.content-left-top, .content-right-bottom) img {
+    width: 9px;
+  }
+}
+
+@media only screen and (min-width:500px) and (max-width:800px) {
+  .card {
+    height: 65px;
+    width: 45px;
+    margin-bottom: -6.5vw;
+    border-radius: 5px;
+  }
+  .card-front {
+    background-size: 22%;
+  }
+  .card-front .content-left-top {
+    font-size: 10px;
+  }
+  .card-front .content-right-bottom {
+    font-size: 10px;
+  } 
+  :is(.content-left-top, .content-right-bottom) img {
+    width: 7px;
+  }
+}
+
+@media only screen and (max-width:500px) {
+  .card {
+    height: 50px;
+    width: 35px;
+    margin-bottom: -6.5vw;
+    border-radius: 5px;
+  }
+  .card-front {
+    background-size: 25%;
+  }
+  .card-front .content-left-top {
+    font-size: 8px;
+  }
+  .card-front .content-right-bottom {
+    font-size: 8px;
+  } 
+  :is(.content-left-top, .content-right-bottom) img {
+    width: 5px;
+  }
 }
