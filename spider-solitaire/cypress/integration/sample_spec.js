@@ -16,9 +16,13 @@ describe('Home page tests', () => {
 
 describe('Game page tests', () => {
 
-    it('should have score and time text on the top of the page', () => {
+    it('should have game outputs on the top of the page which includes time, score, home, highest score, undo last move and restart', () => {
         cy.contains('Score');
         cy.contains('Time');
+        cy.contains('Highest Score');
+        cy.contains('Home');
+        cy.contains('Undo Last Move');
+        cy.contains('Restart');
     })
 
     it('should have visible game area container which display style is grid', () => {

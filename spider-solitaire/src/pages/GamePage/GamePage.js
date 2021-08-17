@@ -95,7 +95,7 @@ function GamePage() {
 
     try {
     const droppedIndexCards = newDeckData[droppedIndexBefore].cards;
-    const cardsThatDroppeddBefore = droppedIndexCards.splice(droppedIndexCards.length-removedCardsCount, droppedIndexCards.length-1);
+    const cardsThatDroppeddBefore = droppedIndexCards.splice(droppedIndexCards.length-removedCardsCount, droppedIndexCards.length);
 
     newDeckData[draggedIndexBefore].cards = [...newDeckData[draggedIndexBefore].cards, ...cardsThatDroppeddBefore];
     
