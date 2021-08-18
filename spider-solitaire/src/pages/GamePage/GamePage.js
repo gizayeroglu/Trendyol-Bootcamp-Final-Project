@@ -1,12 +1,12 @@
-import "./GamePage.css";
+import './GamePage.css';
 
-import React, { useState, useRef, useEffect } from "react";
-import GoBack from "../../components/GoBack/GoBack";
-import CardHolder from "../../components/CardHolder/CardHolder";
-import Card from "../../components/Card/Card";
-import CardDistributor from "../../components/CardDistributor/CardDistributor";
-import TimeUpCounter from "../../components/TimeUpCounter/TimeUpCounter";
-import { getCardHoldersWithCards, checkSetOfCards, isAnyCardHolderWithoutCards, updateCardDraggable, isValidDrop } from "../../utils/GameUtils";
+import React, { useState, useRef, useEffect } from 'react';
+import GoBack from '../../components/GoBack/GoBack';
+import CardHolder from '../../components/CardHolder/CardHolder';
+import Card from '../../components/Card/Card';
+import CardDistributor from '../../components/CardDistributor/CardDistributor';
+import TimeUpCounter from '../../components/TimeUpCounter/TimeUpCounter';
+import { getCardHoldersWithCards, checkSetOfCards, isAnyCardHolderWithoutCards, updateCardDraggable, isValidDrop, getHintedData } from '../../utils/GameUtils';
 
 const data = getCardHoldersWithCards(54);
 
@@ -14,7 +14,6 @@ function GamePage() {
   const [deckData, setDeckData] = useState(data);
   const [gameScore, setGameScore] = useState(0);
   const [highestScore, setHighestScore] = useState(0);
-  const [getBack, setGetBack] = useState({droppedCardHolderIndex:'', draggedCardHolderIndex:'', removedCardsCount:'' });
 
   const dragCard = useRef();
   const dragCardHolder = useRef();
@@ -22,30 +21,30 @@ function GamePage() {
   const handleDragStart = (e, { cardHolderIndex, cardIndex }) => {
     dragCard.current = { cardHolderIndex, cardIndex };
     dragCardHolder.current = e.target;
-    dragCardHolder.current.addEventListener("dragend", handleDragEnd);
+    dragCardHolder.current.addEventListener('dragend', handleDragEnd);
 
     setTimeout(() => {
-      e.target.style.display = "none";
+      e.target.style.display = 'none';
 
       let currentNode = e.target.nextSibling;
 
       while (currentNode) {
-        currentNode.style.display = "none";
+        currentNode.style.display = 'none';
         currentNode = currentNode.nextSibling;
       }
     }, 0);
   };
 
   const handleDragEnd = (e) => {
-    dragCardHolder.current.style.display = "block";
+    dragCardHolder.current.style.display = 'block';
 
     let currentNode = dragCardHolder.current.nextSibling;
 
     while (currentNode) {
-      currentNode.style.display = "block";
+      currentNode.style.display = 'block';
       currentNode = currentNode.nextSibling;
     }
-    dragCardHolder.current.removeEventListener("dragend", handleDragEnd);
+    dragCardHolder.current.removeEventListener('dragend', handleDragEnd);
     dragCard.current = null;
     dragCardHolder.current = null;
   };
@@ -81,31 +80,8 @@ function GamePage() {
       if(isScore) setGameScore(gameScore + 300);
 
       dragCard.current = null;
-
-      setGetBack({droppedCardHolderIndex:droppedCardHolderIndex, draggedCardHolderIndex:draggedCardHolderIndex, removedCardsCount:removedCardsCount });
     }
   };
-
-  const handleTakeBackCardMove = () => {
-    const droppedIndexBefore = getBack.droppedCardHolderIndex;
-    const draggedIndexBefore = getBack.draggedCardHolderIndex;
-    const removedCardsCount = getBack.removedCardsCount;
-
-    const newDeckData = [...deckData];
-
-    try {
-    const droppedIndexCards = newDeckData[droppedIndexBefore].cards;
-    const cardsThatDroppeddBefore = droppedIndexCards.splice(droppedIndexCards.length-removedCardsCount, droppedIndexCards.length);
-
-    newDeckData[draggedIndexBefore].cards = [...newDeckData[draggedIndexBefore].cards, ...cardsThatDroppeddBefore];
-    
-    const updatedCardsData = updateCardDraggable(newDeckData);
-    setDeckData(updatedCardsData);
-    }catch{
-      alert('You can only undo your last move');
-    }
-    setGetBack({droppedCardHolderIndex:'', draggedCardHolderIndex:'', removedCardsCount:''});
-  }
 
   const dragOver = (e) => {
     e.preventDefault();
@@ -119,7 +95,7 @@ function GamePage() {
       return;
     }
 
-    e.target.style.display = "none";
+    e.target.style.display = 'none';
     const distrubitedData = getCardHoldersWithCards(10);
     const newDeckData = [...deckData];
     
@@ -137,8 +113,30 @@ function GamePage() {
     const updatedCardsData = updateCardDraggable(newDeckData);
     setDeckData(updatedCardsData);
   };
+  
+  const handleHint = () => {
+    const hintedData = getHintedData([...deckData]);
+    if(!hintedData) return alert(`I couldn't find a move either`);
+      
+    setDeckData(hintedData);
+    
+    setTimeout(()=>{
+      const newData = [...hintedData];
 
-  useEffect(()=> {
+      for (const data of newData) {
+        for (const card of data.cards) {
+          if(card.isHighlighted) card.isHighlighted = false;
+        }
+      }
+
+      setDeckData(newData);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    if(gameScore === 2400){
+      alert('Congrats ! 🔥');
+    }
     const highestScore = localStorage.getItem('highestScore');
     if(!highestScore) localStorage.setItem('highestScore', highestScore);
     setHighestScore(localStorage.getItem('highestScore'));
@@ -146,13 +144,6 @@ function GamePage() {
     if(gameScore >= highestScore){
       localStorage.setItem('highestScore', gameScore);
       setHighestScore(gameScore);
-    }
-  
-  },[gameScore, highestScore]);
-
-  useEffect(() => {
-    if(gameScore === 2400){
-      alert('Congrats ! 🔥');
     }
   },[gameScore]); 
 
@@ -164,14 +155,14 @@ function GamePage() {
           <i className='fas fa-trophy'></i> Score: {gameScore}
         </span>
         <span className='highest-score'>
-          <i className="fas fa-dragon"></i> Highest Score: {highestScore}
+          <i className='fas fa-dragon'></i> Highest Score: {highestScore}
         </span>
         <span className='game-time'>
           <i className='fas fa-hourglass-half'></i> <TimeUpCounter />
         </span>
-        <button className='undo-move-button' onClick={handleTakeBackCardMove}>Undo Last Move</button>
+        <button className='undo-move-button'>Undo Last Move</button>
         <button className='refresh-page-button' onClick={() => window.location.reload(false)}>Restart</button>
-        <button className='hint-button'>Hint</button>
+        <button className='hint-button' onClick={handleHint}>Hint</button>
       </div>
       <div className='game-area-top-containers'>
          {gameScore >= 300 ? <Card isOpen='true' symbol='A' /> : <div className='game-completed-card-area'></div>}
@@ -196,7 +187,7 @@ function GamePage() {
                     isOpen={card.isOpen}
                     isDraggable={card.isDraggable}
                     symbol={card.symbol}
-                    isHiglighted={card.isHiglighted}
+                    isHighlighted={card.isHighlighted}
                   />
                 );
               })}

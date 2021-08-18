@@ -1,4 +1,4 @@
-import { checkSetOfCards, isAnyCardHolderWithoutCards, updateCardDraggable, isValidDrop, getCardHoldersWithCards} from '../../utils/GameUtils';
+import { checkSetOfCards, isAnyCardHolderWithoutCards, updateCardDraggable, isValidDrop, getCardHoldersWithCards, getHintedData} from '../../utils/GameUtils';
 
 describe('Game Utils Tests', () => {
     
@@ -6,12 +6,12 @@ describe('Game Utils Tests', () => {
 
         it('should function return cards without search for a set (A2345678910JQK) if the cards length less than the 13', () => {
             const cards = [
-                {symbol: '4', isOpen: false, isDraggable: false, value: 4},
-                {symbol: 'A', isOpen: false, isDraggable: false, value: 1},
-                {symbol: 'J', isOpen: false, isDraggable: false, value: 11},
-                {symbol: '6', isOpen: false, isDraggable: false, value: 6},
-                {symbol: '5', isOpen: false, isDraggable: false, value: 5},
-                {symbol: 'K', isOpen: true, isDraggable: false, value: 5}
+                {symbol: '4', isOpen: false, isDraggable: false, value: 4, isHighlighted: false},
+                {symbol: 'A', isOpen: false, isDraggable: false, value: 1, isHighlighted: false},
+                {symbol: 'J', isOpen: false, isDraggable: false, value: 11, isHighlighted: false},
+                {symbol: '6', isOpen: false, isDraggable: false, value: 6, isHighlighted: false},
+                {symbol: '5', isOpen: false, isDraggable: false, value: 5, isHighlighted: false},
+                {symbol: 'K', isOpen: true, isDraggable: false, value: 5, isHighlighted: false}
             ];
 
             const setOfTheCards = checkSetOfCards(cards);
@@ -20,20 +20,20 @@ describe('Game Utils Tests', () => {
 
         it('should function return cards without search for the set if the cards last element is not K', () => {
              const cards = [
-                {symbol: '4', isOpen: true, isDraggable: true, value: 4},
-                {symbol: 'A', isOpen: true, isDraggable: true, value: 1},
-                {symbol: 'J', isOpen: true, isDraggable: true, value: 11},
-                {symbol: '6', isOpen: true, isDraggable: true, value: 6},
-                {symbol: '5', isOpen: true, isDraggable: true, value: 5},
-                {symbol: '4', isOpen: true, isDraggable: true, value: 4},
-                {symbol: 'A', isOpen: true, isDraggable: true, value: 1},
-                {symbol: 'J', isOpen: true, isDraggable: true, value: 11},
-                {symbol: '6', isOpen: true, isDraggable: true, value: 6},
-                {symbol: 'A', isOpen: true, isDraggable: true, value: 1},
-                {symbol: 'J', isOpen: true, isDraggable: true, value: 11},
-                {symbol: '6', isOpen: true, isDraggable: true, value: 6},
-                {symbol: '5', isOpen: true, isDraggable: true, value: 5},
-                {symbol: 'A', isOpen: true, isDraggable: true, value: 5}
+                {symbol: '4', isOpen: true, isDraggable: true, value: 4, isHighlighted: false},
+                {symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false},
+                {symbol: 'J', isOpen: true, isDraggable: true, value: 11, isHighlighted: false},
+                {symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false},
+                {symbol: '5', isOpen: true, isDraggable: true, value: 5, isHighlighted: false},
+                {symbol: '4', isOpen: true, isDraggable: true, value: 4, isHighlighted: false},
+                {symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false},
+                {symbol: 'J', isOpen: true, isDraggable: true, value: 11, isHighlighted: false},
+                {symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false},
+                {symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false},
+                {symbol: 'J', isOpen: true, isDraggable: true, value: 11, isHighlighted: false},
+                {symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false},
+                {symbol: '5', isOpen: true, isDraggable: true, value: 5, isHighlighted: false},
+                {symbol: 'A', isOpen: true, isDraggable: true, value: 5, isHighlighted: false}
             ];
 
             const setOfTheCards = checkSetOfCards(cards);
@@ -42,20 +42,20 @@ describe('Game Utils Tests', () => {
         
         it('should function return data without any change if the data has not required set of symbols (A2345678910JQK) ', () => {
             const cards = [
-                {symbol: '4', isOpen: true, isDraggable: true, value: 4},
-                {symbol: 'A', isOpen: true, isDraggable: true, value: 1},
-                {symbol: 'J', isOpen: true, isDraggable: true, value: 11},
-                {symbol: '6', isOpen: true, isDraggable: true, value: 6},
-                {symbol: '5', isOpen: true, isDraggable: true, value: 5},
-                {symbol: '4', isOpen: true, isDraggable: true, value: 4},
-                {symbol: 'A', isOpen: true, isDraggable: true, value: 1},
-                {symbol: 'J', isOpen: true, isDraggable: true, value: 11},
-                {symbol: '6', isOpen: true, isDraggable: true, value: 6},
-                {symbol: 'A', isOpen: true, isDraggable: true, value: 1},
-                {symbol: 'J', isOpen: true, isDraggable: true, value: 11},
-                {symbol: '6', isOpen: true, isDraggable: true, value: 6},
-                {symbol: '5', isOpen: true, isDraggable: true, value: 5},
-                {symbol: 'K', isOpen: true, isDraggable: true, value: 13}
+                {symbol: '4', isOpen: true, isDraggable: true, value: 4, isHighlighted: false},
+                {symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false},
+                {symbol: 'J', isOpen: true, isDraggable: true, value: 11, isHighlighted: false},
+                {symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false},
+                {symbol: '5', isOpen: true, isDraggable: true, value: 5, isHighlighted: false},
+                {symbol: '4', isOpen: true, isDraggable: true, value: 4, isHighlighted: false},
+                {symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false},
+                {symbol: 'J', isOpen: true, isDraggable: true, value: 11, isHighlighted: false},
+                {symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false},
+                {symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false},
+                {symbol: 'J', isOpen: true, isDraggable: true, value: 11, isHighlighted: false},
+                {symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false},
+                {symbol: '5', isOpen: true, isDraggable: true, value: 5, isHighlighted: false},
+                {symbol: 'K', isOpen: true, isDraggable: true, value: 13, isHighlighted: false}
             ];
 
             const setOfTheCards = checkSetOfCards(cards);
@@ -64,19 +64,19 @@ describe('Game Utils Tests', () => {
 
         it('should function splice required set (A2345678910JQK) from data if it includes', () => {
             const cards = [
-                {symbol: 'A', isOpen: true, isDraggable: true, value: 1},
-                {symbol: '2', isOpen: true, isDraggable: true, value: 2},
-                {symbol: '3', isOpen: true, isDraggable: true, value: 3},
-                {symbol: '4', isOpen: true, isDraggable: true, value: 4},
-                {symbol: '5', isOpen: true, isDraggable: true, value: 5},
-                {symbol: '6', isOpen: true, isDraggable: true, value: 6},
-                {symbol: '7', isOpen: true, isDraggable: true, value: 7},
-                {symbol: '8', isOpen: true, isDraggable: true, value: 8},
-                {symbol: '9', isOpen: true, isDraggable: true, value: 9},
-                {symbol: '10', isOpen: true, isDraggable: true, value: 10},
-                {symbol: 'J', isOpen: true, isDraggable: true, value: 11},
-                {symbol: 'Q', isOpen: true, isDraggable: true, value: 12},
-                {symbol: 'K', isOpen: true, isDraggable: true, value: 13}
+                {symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false},
+                {symbol: '2', isOpen: true, isDraggable: true, value: 2, isHighlighted: false},
+                {symbol: '3', isOpen: true, isDraggable: true, value: 3, isHighlighted: false},
+                {symbol: '4', isOpen: true, isDraggable: true, value: 4, isHighlighted: false},
+                {symbol: '5', isOpen: true, isDraggable: true, value: 5, isHighlighted: false},
+                {symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false},
+                {symbol: '7', isOpen: true, isDraggable: true, value: 7, isHighlighted: false},
+                {symbol: '8', isOpen: true, isDraggable: true, value: 8, isHighlighted: false},
+                {symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false},
+                {symbol: '10', isOpen: true, isDraggable: true, value: 10, isHighlighted: false},
+                {symbol: 'J', isOpen: true, isDraggable: true, value: 11, isHighlighted: false},
+                {symbol: 'Q', isOpen: true, isDraggable: true, value: 12, isHighlighted: false},
+                {symbol: 'K', isOpen: true, isDraggable: true, value: 13, isHighlighted: false}
             ];
 
             const setOfTheCards = checkSetOfCards(cards);
@@ -85,28 +85,28 @@ describe('Game Utils Tests', () => {
 
         it('should set the last cards as open and draggable after splice', () => {
             const cards = [
-                {symbol: '5', isOpen: false, isDraggable: false, value: 5},
-                {symbol: '4', isOpen: false, isDraggable: false, value: 4},
-                {symbol: 'A', isOpen: true, isDraggable: true, value: 1},
-                {symbol: '2', isOpen: true, isDraggable: true, value: 2},
-                {symbol: '3', isOpen: true, isDraggable: true, value: 3},
-                {symbol: '4', isOpen: true, isDraggable: true, value: 4},
-                {symbol: '5', isOpen: true, isDraggable: true, value: 5},
-                {symbol: '6', isOpen: true, isDraggable: true, value: 6},
-                {symbol: '7', isOpen: true, isDraggable: true, value: 7},
-                {symbol: '8', isOpen: true, isDraggable: true, value: 8},
-                {symbol: '9', isOpen: true, isDraggable: true, value: 9},
-                {symbol: '10', isOpen: true, isDraggable: true, value: 10},
-                {symbol: 'J', isOpen: true, isDraggable: true, value: 11},
-                {symbol: 'Q', isOpen: true, isDraggable: true, value: 12},
-                {symbol: 'K', isOpen: true, isDraggable: true, value: 13}
+                {symbol: '5', isOpen: false, isDraggable: false, value: 5, isHighlighted: false},
+                {symbol: '4', isOpen: false, isDraggable: false, value: 4, isHighlighted: false},
+                {symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false},
+                {symbol: '2', isOpen: true, isDraggable: true, value: 2, isHighlighted: false},
+                {symbol: '3', isOpen: true, isDraggable: true, value: 3, isHighlighted: false},
+                {symbol: '4', isOpen: true, isDraggable: true, value: 4, isHighlighted: false},
+                {symbol: '5', isOpen: true, isDraggable: true, value: 5, isHighlighted: false},
+                {symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false},
+                {symbol: '7', isOpen: true, isDraggable: true, value: 7, isHighlighted: false},
+                {symbol: '8', isOpen: true, isDraggable: true, value: 8, isHighlighted: false},
+                {symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false},
+                {symbol: '10', isOpen: true, isDraggable: true, value: 10, isHighlighted: false},
+                {symbol: 'J', isOpen: true, isDraggable: true, value: 11, isHighlighted: false},
+                {symbol: 'Q', isOpen: true, isDraggable: true, value: 12, isHighlighted: false},
+                {symbol: 'K', isOpen: true, isDraggable: true, value: 13, isHighlighted: false}
             ];
 
             const setOfTheCards = checkSetOfCards(cards);
             expect(setOfTheCards).toEqual( {isScore: true, 
                 cards: [
-                    {symbol: '5', isOpen: false, isDraggable: false, value: 5},
-                    {symbol: '4', isOpen: true, isDraggable: true, value: 4}
+                    {symbol: '5', isOpen: false, isDraggable: false, value: 5, isHighlighted: false},
+                    {symbol: '4', isOpen: true, isDraggable: true, value: 4, isHighlighted: false}
                 ]});
         })
     })
@@ -116,15 +116,15 @@ describe('Game Utils Tests', () => {
         it('should return true if one of the card holder is empty', () => {
             const deckData = [
                 {name: 'cardholder0', cards: []},
-                {name: 'cardholder1', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder2', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]}
+                {name: 'cardholder1', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder2', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]}
             ]
 
             const isCardHolderEmpty = isAnyCardHolderWithoutCards(deckData);
@@ -133,16 +133,16 @@ describe('Game Utils Tests', () => {
 
         it('should return false if all card holders have cards inside of it', () => {
             const deckData = [
-                {name: 'cardholder0', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder1', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder2', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]}
+                {name: 'cardholder0', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder1', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder2', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]}
             ]
 
             const isCardHolderEmpty = isAnyCardHolderWithoutCards(deckData);
@@ -157,16 +157,16 @@ describe('Game Utils Tests', () => {
                 {name: 'cardholder0', cards: [{symbol: 'A', isOpen: false, isDraggable: false, value: 1}]},
                 {name: 'cardholder1',
                  cards: [
-                    {symbol: 'A', isOpen: true, isDraggable: false, value: 1},
-                    {symbol: '2', isOpen: true, isDraggable: false, value: 2},
-                    {symbol: '3', isOpen: true, isDraggable: false, value: 3},
-                    {symbol: '4', isOpen: true, isDraggable: false, value: 4},
-                    {symbol: '5', isOpen: true, isDraggable: false, value: 5},
-                    {symbol: '6', isOpen: true, isDraggable: false, value: 6},
-                    {symbol: '7', isOpen: true, isDraggable: false, value: 7},
-                    {symbol: '2', isOpen: true, isDraggable: false, value: 2},
-                    {symbol: 'A', isOpen: true, isDraggable: false, value: 1},
-                    {symbol: '2', isOpen: true, isDraggable: true, value: 2}
+                    {symbol: 'A', isOpen: true, isDraggable: false, value: 1, isHighlighted: false},
+                    {symbol: '2', isOpen: true, isDraggable: false, value: 2, isHighlighted: false},
+                    {symbol: '3', isOpen: true, isDraggable: false, value: 3, isHighlighted: false},
+                    {symbol: '4', isOpen: true, isDraggable: false, value: 4, isHighlighted: false},
+                    {symbol: '5', isOpen: true, isDraggable: false, value: 5, isHighlighted: false},
+                    {symbol: '6', isOpen: true, isDraggable: false, value: 6, isHighlighted: false},
+                    {symbol: '7', isOpen: true, isDraggable: false, value: 7, isHighlighted: false},
+                    {symbol: '2', isOpen: true, isDraggable: false, value: 2, isHighlighted: false},
+                    {symbol: 'A', isOpen: true, isDraggable: false, value: 1, isHighlighted: false},
+                    {symbol: '2', isOpen: true, isDraggable: true, value: 2, isHighlighted: false}
                 ]},
                 {name: 'cardholder2', cards: [
                     {symbol: 'A', isOpen: false, isDraggable: false, value: 1},
@@ -183,16 +183,16 @@ describe('Game Utils Tests', () => {
                 {name: 'cardholder0', cards: [{symbol: 'A', isOpen: true, isDraggable: true, value: 9}]},
                 {name: 'cardholder1',
                  cards: [
-                    {symbol: 'A', isOpen: true, isDraggable: true, value: 1},
-                    {symbol: '2', isOpen: true, isDraggable: true, value: 2},
-                    {symbol: '3', isOpen: true, isDraggable: true, value: 3},
-                    {symbol: '4', isOpen: true, isDraggable: true, value: 4},
-                    {symbol: '5', isOpen: true, isDraggable: true, value: 5},
-                    {symbol: '6', isOpen: true, isDraggable: true, value: 6},
-                    {symbol: '7', isOpen: true, isDraggable: true, value: 7},
-                    {symbol: '2', isOpen: true, isDraggable: true, value: 2}, //breaks the draggable situation
-                    {symbol: 'A', isOpen: true, isDraggable: true, value: 1},
-                    {symbol: '2', isOpen: true, isDraggable: true, value: 2},
+                    {symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false},
+                    {symbol: '2', isOpen: true, isDraggable: true, value: 2, isHighlighted: false},
+                    {symbol: '3', isOpen: true, isDraggable: true, value: 3, isHighlighted: false},
+                    {symbol: '4', isOpen: true, isDraggable: true, value: 4, isHighlighted: false},
+                    {symbol: '5', isOpen: true, isDraggable: true, value: 5, isHighlighted: false},
+                    {symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false},
+                    {symbol: '7', isOpen: true, isDraggable: true, value: 7, isHighlighted: false},
+                    {symbol: '2', isOpen: true, isDraggable: true, value: 2, isHighlighted: false}, //breaks the draggable situation
+                    {symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false},
+                    {symbol: '2', isOpen: true, isDraggable: true, value: 2, isHighlighted: false},
                 ]},
             ]
 
@@ -224,14 +224,14 @@ describe('Game Utils Tests', () => {
                 {name: 'cardholder1', cards: [
                     {symbol: '4', isOpen: true, isDraggable: true, value: 4},
                     {symbol: '5', isOpen: true, isDraggable: true, value: 5}]}, //dragged 
-                {name: 'cardholder2', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]}
+                {name: 'cardholder2', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]}
             ]
 
             let validDrop = isValidDrop(deckData, droppedCardHolderIndex, draggedCardHolderIndex, draggedCardIndex);
@@ -244,14 +244,14 @@ describe('Game Utils Tests', () => {
                 {name: 'cardholder1', cards: [
                     {symbol: '4', isOpen: true, isDraggable: true, value: 4},
                     {symbol: '5', isOpen: true, isDraggable: true, value: 5}]}, //dragged 
-                {name: 'cardholder2', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]}
+                {name: 'cardholder2', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]}
             ]
 
             let validDrop = isValidDrop(deckData, droppedCardHolderIndex, draggedCardHolderIndex, draggedCardIndex);
@@ -264,18 +264,97 @@ describe('Game Utils Tests', () => {
                 {name: 'cardholder1', cards: [
                     {symbol: '4', isOpen: true, isDraggable: true, value: 4},
                     {symbol: '5', isOpen: true, isDraggable: true, value: 5}]}, //dragged 
-                {name: 'cardholder2', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]},
-                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9}]}
+                {name: 'cardholder2', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]}
             ]
 
             let validDrop = isValidDrop(deckData, droppedCardHolderIndex, draggedCardHolderIndex, draggedCardIndex);
             expect(validDrop).toEqual(true);
+        })
+    })
+
+    describe('getHintedData function tests', () => {
+
+        it('should return data with the two highlighted cards which have consecutive values', () => {
+            const deckData = [
+                {name: 'cardholder0', cards: [{symbol: '7', isOpen: true, isDraggable: true, value: 7, isHighlighted: false}]},
+                {name: 'cardholder1', cards: [{symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false}]},
+                {name: 'cardholder2', cards: [{symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false}]},
+                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]}
+            ]
+
+            const hintedCards = getHintedData(deckData);
+            expect(hintedCards).toEqual([
+                {name: 'cardholder0', cards: [{symbol: '7', isOpen: true, isDraggable: true, value: 7, isHighlighted: true}]},
+                {name: 'cardholder1', cards: [{symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: true}]},
+                {name: 'cardholder2', cards: [{symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false}]},
+                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]}
+            ]);
+        })
+
+        it('should handle the situation of empty cardholder', () => {
+            const deckData = [
+                {name: 'cardholder0', cards: []},
+                {name: 'cardholder1', cards: [{symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false}]},
+                {name: 'cardholder2', cards: [{symbol: '7', isOpen: true, isDraggable: true, value: 7, isHighlighted: false}]},
+                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]}
+            ]
+
+            const hintedCards = getHintedData(deckData);
+            expect(hintedCards).toEqual([
+                {name: 'cardholder0', cards: []},
+                {name: 'cardholder1', cards: [{symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: true}]},
+                {name: 'cardholder2', cards: [{symbol: '7', isOpen: true, isDraggable: true, value: 7, isHighlighted: true}]},
+                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder4', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder6', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]}
+            ]);
+        })
+
+        it('should return null if there is no card that has consecutive values', () => {
+            const deckData = [
+                {name: 'cardholder0', cards: []},
+                {name: 'cardholder1', cards: [{symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false}]},
+                {name: 'cardholder2', cards: [{symbol: '3', isOpen: true, isDraggable: true, value: 3, isHighlighted: false}]},
+                {name: 'cardholder3', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder4', cards: [{symbol: '6', isOpen: true, isDraggable: true, value: 6, isHighlighted: false}]},
+                {name: 'cardholder5', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder6', cards: [{symbol: 'K', isOpen: true, isDraggable: true, value: 13, isHighlighted: false}]},
+                {name: 'cardholder7', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder8', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]},
+                {name: 'cardholder9', cards: [{symbol: '9', isOpen: true, isDraggable: true, value: 9, isHighlighted: false}]}
+            ]
+
+            const hintedCards = getHintedData(deckData);
+            expect(hintedCards).toBeFalsy();
         })
     })
 })

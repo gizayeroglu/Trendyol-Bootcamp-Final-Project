@@ -33,7 +33,7 @@ export const getCardHoldersWithCards = (cardCount) => {
       symbol: cardRank[symbolIndex].rank,
       isOpen:false,
       isDraggable:false,
-      isHiglighted:false,
+      isHighlighted:false,
       value: cardRank[symbolIndex].value
     });
 
@@ -97,7 +97,7 @@ export const updateCardDraggable = (deckData) => {
         parentNode.isDraggable=false;
       }
     }
-
+    
     if(data.cards.length) data.cards[data.cards.length-1].isDraggable=true; 
   }
 
@@ -116,3 +116,31 @@ export const isValidDrop = (deckData, droppedCardHolderIndex, draggedCardHolderI
 
   return false;
 };
+
+export const getHintedData = (deckData) => {
+  const lastCardsOfHolders = [];
+
+  for(const data of deckData) {
+
+    if(!data.cards.length){
+      lastCardsOfHolders.push(-1); //index matters
+    }else {
+      lastCardsOfHolders.push(data.cards[data.cards.length-1].value);
+    }
+  }
+  
+  for (const data of deckData) {
+    for (const card of data.cards) {
+      if(!card.isDraggable || 
+          !lastCardsOfHolders.includes(card.value-1) || 
+          data.name === deckData[lastCardsOfHolders.indexOf(card.value-1)].name) continue;
+
+        const lastCardIndex = lastCardsOfHolders.indexOf(card.value-1);
+        card.isHighlighted = true;
+        deckData[lastCardIndex].cards[deckData[lastCardIndex].cards.length-1].isHighlighted = true;
+        return deckData;
+    }
+  }
+
+  return null;
+}
