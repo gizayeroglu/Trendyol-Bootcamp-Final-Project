@@ -145,9 +145,7 @@ function GamePage() {
     const draggedIndexBefore = lastMove.draggedCardHolderIndex;
     const removedCardsCount = lastMove.removedCardsCount;
 
-    try {
-      if(!droppedIndexBefore || !draggedIndexBefore || !removedCardsCount) throw new Error('There is no last move');
-     
+    try {     
       const newDeckData = [...deckData];
       
       const droppedCards = newDeckData[droppedIndexBefore].cards;
@@ -159,7 +157,7 @@ function GamePage() {
       setDeckData(updatedCardsData);
       setLastMove({});
     } catch (ex) {
-      alert(ex.message);
+      alert('There is no last move');
     }
   };
 
