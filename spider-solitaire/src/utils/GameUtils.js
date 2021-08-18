@@ -52,7 +52,7 @@ export const getCardHoldersWithCards = (cardCount) => {
 
 export const checkSetOfCards = (cards) => {
 
-  if(cards.length < 13 || cards[cards.length-1].value !== 13) return {isScore: false, cards: cards};
+  if(cards.length < 13 || cards[cards.length-1].value !== 13 || cards[cards.length-13].isOpen === false) return {isScore: false, cards: cards};
   
   let cardsRanksForEachHolder = '';
 

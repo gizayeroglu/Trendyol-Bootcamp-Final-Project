@@ -16,11 +16,4 @@ describe('Home Page tests', () => {
   it('should render', () => {
     expect(wrapper).toMatchSnapshot();
   });
-
-  // it('should have a clickable div that transfers home page', () => {
-  //     const mockCallBackClick = jest.fn();
-  //     wrapper = shallow(<HomePage onCardClick={mockCallBackClick}/>);
-  //     wrapper.find('.play-game-card').simulate('click');
-  //     expect(mockCallBackClick.mock.calls.length).toEqual(1);
-  // })
 });

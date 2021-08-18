@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const TimeUpCounter = () => {
   const [hours, setHours] = useState(0);

@@ -16,15 +16,4 @@ describe('Card Holder component tests', () => {
   it('should render the card holder component', () => {
     expect(wrapper).toMatchSnapshot();
   });
-
-  // it('should form handle the submit', () => {
-  //   const getNewCards = jest.fn();
-  //   const wrapper = shallow(<CardHolder props={getNewCards}/>);
-  //   const instance = wrapper.instance();
-  //   const clickCard = wrapper
-  //   .find('.card-distrubitor-container:nth-child(2)')
-  //   expect(cl)
-  //   // .simulate('click');
-  //   expect(getNewCards).toHaveBeenCalled();
-  // });
 });
