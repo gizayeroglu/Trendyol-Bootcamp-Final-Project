@@ -14,6 +14,7 @@ function GamePage() {
   const [deckData, setDeckData] = useState(data);
   const [gameScore, setGameScore] = useState(0);
   const [highestScore, setHighestScore] = useState(0);
+  const [lastMove, setLastMove] = useState({});
 
   const dragCard = useRef();
   const dragCardHolder = useRef();
@@ -77,7 +78,12 @@ function GamePage() {
       const updatedCardsData = updateCardDraggable(newDeckData);
       setDeckData(updatedCardsData);
 
-      if(isScore) setGameScore(gameScore + 300);
+      if(isScore) {
+        setGameScore(gameScore + 300);
+        setLastMove({}); // If the set is completed, clean last move state
+      } else {
+        setLastMove({droppedCardHolderIndex, draggedCardHolderIndex, removedCardsCount});
+      }
 
       dragCard.current = null;
     }
@@ -112,6 +118,7 @@ function GamePage() {
       
     const updatedCardsData = updateCardDraggable(newDeckData);
     setDeckData(updatedCardsData);
+    setLastMove({}); // If the new cards distributed, clean last move state
   };
   
   const handleHint = () => {
@@ -131,6 +138,29 @@ function GamePage() {
 
       setDeckData(newData);
     }, 1000);
+  };
+
+  const handleTakeBackCardMove = () => {
+    const droppedIndexBefore = lastMove.droppedCardHolderIndex;
+    const draggedIndexBefore = lastMove.draggedCardHolderIndex;
+    const removedCardsCount = lastMove.removedCardsCount;
+
+    try {
+      if(!droppedIndexBefore || !draggedIndexBefore || !removedCardsCount) throw new Error('There is no last move');
+     
+      const newDeckData = [...deckData];
+      
+      const droppedCards = newDeckData[droppedIndexBefore].cards;
+      const restoredCards = droppedCards.splice(droppedCards.length-removedCardsCount, removedCardsCount);
+
+      newDeckData[draggedIndexBefore].cards = [...newDeckData[draggedIndexBefore].cards, ...restoredCards];
+      
+      const updatedCardsData = updateCardDraggable(newDeckData);
+      setDeckData(updatedCardsData);
+      setLastMove({});
+    } catch (ex) {
+      alert(ex.message);
+    }
   };
 
   useEffect(() => {
@@ -160,7 +190,7 @@ function GamePage() {
         <span className='game-time'>
           <i className='fas fa-hourglass-half'></i> <TimeUpCounter />
         </span>
-        <button className='undo-move-button'>Undo Last Move</button>
+        <button className='undo-move-button' onClick={handleTakeBackCardMove}>Undo Last Move</button>
         <button className='refresh-page-button' onClick={() => window.location.reload(false)}>Restart</button>
         <button className='hint-button' onClick={handleHint}>Hint</button>
       </div>
