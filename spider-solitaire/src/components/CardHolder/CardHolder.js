@@ -1,6 +1,6 @@
-import "./CardHolder.css";
+import './CardHolder.css';
 
-import React from "react";
+import React from 'react';
 
 function CardHolder(props) {
   const { onDrop, onDragOver } = props;

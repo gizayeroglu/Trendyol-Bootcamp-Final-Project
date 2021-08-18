@@ -1,8 +1,8 @@
-import "../HomePage/HomePage.css";
+import '../HomePage/HomePage.css';
 
-import { useHistory } from "react-router-dom";
-import Header from "../../components/Header/Header";
-import spiderSolitaire from "../../assets/preview-reversed-spider-solitaire.webp";
+import { useHistory } from 'react-router-dom';
+import Header from '../../components/Header/Header';
+import spiderSolitaire from '../../assets/preview-reversed-spider-solitaire.webp';
 
 function HomePage() {
   const history = useHistory();

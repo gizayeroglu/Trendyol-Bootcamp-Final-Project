@@ -1,13 +1,13 @@
-import "./GoBack.css";
+import './GoBack.css';
 
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 function GoBack() {
   const history = useHistory();
 
   const handleGoHome = () => {
-    history.push("/");
+    history.push('/');
   };
 
   return (

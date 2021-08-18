@@ -59,14 +59,9 @@
 :is(.content-left-top, .content-right-bottom) img {
   width: 13px;
 }
-@keyframes highlightCard {
-  from {background-color: var(--white);}
-  to {background-color: var(--primaryYellowColor);}
-}
+
 .highlighted {
-  background-color: var(--white);
-  animation-name: highlightCard;
-  animation-duration: 1s;
+  background-color: var(--primaryYellowColor);
 }
 
 @media only screen and (min-width:1600px) {

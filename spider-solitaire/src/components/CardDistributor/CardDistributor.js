@@ -1,6 +1,6 @@
-import "./CardDistributor.css";
+import './CardDistributor.css';
 
-import React from "react";
+import React from 'react';
 
 function CardDistributor ({ getNewCards }) {
   return (
