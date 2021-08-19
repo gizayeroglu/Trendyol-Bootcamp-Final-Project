@@ -52,7 +52,10 @@ export const getCardHoldersWithCards = (cardCount) => {
 
 export const checkSetOfCards = (cards) => {
 
-  if(cards.length < 13 || cards[cards.length-1].value !== 13 || !cards[cards.length-13].isOpen) return {isScore: false, cards: cards};
+  if(cards.length < 13 || 
+    cards[cards.length-1].value !== 13 ||
+    !cards[cards.length-13].isOpen ||
+    cards[cards.length-13].value !== 1) return {isScore: false, cards: cards};
   
   let cardsRanksForEachHolder = '';
 
@@ -64,7 +67,7 @@ export const checkSetOfCards = (cards) => {
   
   if(foundedCardIndex === -1) return {isScore: false, cards: cards};
 
-  cards.splice(foundedCardIndex, foundedCardIndex + 13);
+  cards.splice(cards.length-13, 13);
   if(cards.length) cards[cards.length-1].isOpen=true;
   if(cards.length) cards[cards.length-1].isDraggable=true;
   
