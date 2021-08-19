@@ -62,7 +62,12 @@
   font-size: 16px;
   font-style: italic;
 }
-
+.undo-move-button:hover,
+.refresh-page-button:hover,
+.hint-button:hover {
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.5);
+}
+ 
 @media only screen and (min-width:800px) and (max-width: 1200px) {
   .game-completed-card-area {
     height: 86px;
