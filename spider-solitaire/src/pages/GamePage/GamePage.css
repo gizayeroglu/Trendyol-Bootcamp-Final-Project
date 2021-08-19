@@ -2,6 +2,7 @@
   --blackColor:#000;
   --primaryYellowColor: #ffb142;
   --white: #e8e8e6;
+  --red: #e74c3c;
 }
 
 .game-area-container {
@@ -49,12 +50,23 @@
   gap: 50px;
 }
 .undo-move-button,
-.refresh-page-button,
 .hint-button {
   border-radius: 10px;
   color: var(--blackColor);
   padding:10px;
   background-color: var(--primaryYellowColor);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  font-style: italic;
+}
+.refresh-page-button {
+  border-radius: 10px;
+  color: var(--blackColor);
+  padding:10px;
+  background-color: var(--red);
   border: none;
   outline: none;
   cursor: pointer;
@@ -173,4 +185,8 @@
   .game-area-container {
     margin-left: 50px;
   }
+}
+
+.deneme{
+  background-color:aqua;
 }

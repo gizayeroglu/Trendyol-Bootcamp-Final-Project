@@ -4,7 +4,7 @@ describe('Game Utils Tests', () => {
     
     describe('checkSetOfCards function tests', () => {
 
-        it('should function return cards without search for a set (A2345678910JQK) if the cards length less than the 13', () => {
+        it('should return cards without search for a set (A2345678910JQK) if the cards length less than the 13', () => {
             const cards = [
                 {symbol: '4', isOpen: false, isDraggable: false, value: 4, isHighlighted: false},
                 {symbol: 'A', isOpen: false, isDraggable: false, value: 1, isHighlighted: false},
@@ -18,7 +18,7 @@ describe('Game Utils Tests', () => {
             expect(setOfTheCards).toEqual( {isScore: false, cards: cards});
         })
 
-        it('should function return cards without search for the set if the cards last element is not K', () => {
+        it('should return cards without search for the set if the cards last element is not K', () => {
              const cards = [
                 {symbol: '4', isOpen: true, isDraggable: true, value: 4, isHighlighted: false},
                 {symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false},
@@ -40,7 +40,7 @@ describe('Game Utils Tests', () => {
             expect(setOfTheCards).toEqual( {isScore: false, cards: cards});
         })  
         
-        it('should function return data without any change if the data has not required set of symbols (A2345678910JQK) ', () => {
+        it('should return data without any change if the data has not required set of symbols (A2345678910JQK) ', () => {
             const cards = [
                 {symbol: '4', isOpen: true, isDraggable: true, value: 4, isHighlighted: false},
                 {symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false},
@@ -62,7 +62,7 @@ describe('Game Utils Tests', () => {
             expect(setOfTheCards).toEqual( {isScore: false, cards: cards});
         })
 
-        it('should function splice required set (A2345678910JQK) from data if it includes', () => {
+        it('should splice required set (A2345678910JQK) from data if it includes', () => {
             const cards = [
                 {symbol: 'A', isOpen: true, isDraggable: true, value: 1, isHighlighted: false},
                 {symbol: '2', isOpen: true, isDraggable: true, value: 2, isHighlighted: false},

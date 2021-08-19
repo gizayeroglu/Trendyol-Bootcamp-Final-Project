@@ -189,8 +189,8 @@ function GamePage() {
           <i className='fas fa-hourglass-half'></i> <TimeUpCounter />
         </span>
         <button className='undo-move-button' onClick={handleTakeBackCardMove}>Undo Last Move</button>
-        <button className='refresh-page-button' onClick={() => window.location.reload(false)}>Restart</button>
         <button className='hint-button' onClick={handleHint}>Hint</button>
+        <button className='refresh-page-button' onClick={() => window.location.reload(false)}>Restart</button>
       </div>
       <div className='game-area-top-containers'>
          {gameScore >= 300 ? <Card isOpen='true' symbol='K' /> : <div className='game-completed-card-area'></div>}
