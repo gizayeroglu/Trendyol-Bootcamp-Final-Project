@@ -20,9 +20,3 @@ You will also see any lint errors in the console.
 # *Reversed Spider Solitaire Desktop*
 ![](src/assets/preview-reversed-spider-solitaire.webp "Reversed Spider Solitaire")
 
-# *Cypress Tests*
-![](src/assets/cypress-tests.jpg)
-
-# *Unit Tests*
-![](src/assets/test-coverage.jpg)
-

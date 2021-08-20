@@ -13,7 +13,7 @@ describe('Card Holder component tests', () => {
     wrapper = shallow(<CardHolder />);
   });
 
-  it('should render the card holder component', () => {
+  it('should render', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

@@ -17,14 +17,14 @@ describe('Card component test', function () {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should display card as open if is last card props is true', () => {
+  it('should display card as open if isOpen true', () => {
     const isOpen = true;
     const component = shallow(<Card isOpen={isOpen} />);
     let card = component.find('div');
     expect(card.hasClass('card-front')).toBeTruthy();
   });
 
-  it('should display card as closed if is last card props is false', () => {
+  it('should display card as closed if isOpen false', () => {
     const isOpen = false;
     const component = shallow(<Card isOpen={isOpen} />);
     let card = component.find('div');

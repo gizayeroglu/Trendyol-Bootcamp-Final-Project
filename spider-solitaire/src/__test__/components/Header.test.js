@@ -13,15 +13,15 @@ describe('Header component test', function () {
     wrapper = shallow(<Header />);
   });
 
-  it('should render header', () => {
+  it('should render', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should have a header text Spider Solitaire', function () {
+  it('should have a header text', function () {
     expect(wrapper.find('h1').text()).toEqual('Reversed Spider Solitaire');
   });
 
-  it('should check class of h1 element', () => {
+  it('should have h1 with the class name header', () => {
     const h1 = wrapper.hasClass('header');
     expect(h1).toEqual(true);
   });

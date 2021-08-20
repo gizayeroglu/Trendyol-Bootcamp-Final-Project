@@ -8,7 +8,7 @@ import GoBack from '../../components/GoBack/GoBack';
 
 configure({ adapter: new Adapter() });
 
-describe('GoBack component test', function () {
+describe('Go Back component test', function () {
   let wrapper;
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('GoBack component test', function () {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should check backbutton class', () => {
+  it('should have button with the class name go-back-button', () => {
     const buttonTextCheck = wrapper.find('button').hasClass('go-back-button');
     expect(buttonTextCheck).toBeTruthy();
   });

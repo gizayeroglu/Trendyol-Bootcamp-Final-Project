@@ -13,7 +13,7 @@ describe('Card Distrubitor component tests', () => {
     wrapper = shallow(<CardDistributor  />);
   });
 
-  it('should render the card holder component', () => {
+  it('should render', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -24,5 +24,4 @@ describe('Card Distrubitor component tests', () => {
     wrapper.find('.card-distrubitor-container').children().at(1).simulate('click');
     expect(getNewCards).toHaveBeenCalledTimes(1);
   });
-
 });
