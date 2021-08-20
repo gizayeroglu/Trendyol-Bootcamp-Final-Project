@@ -3,6 +3,7 @@
   --blackColor:#000;
   --primaryYellowColor: #ffb142;
 }
+
 .go-back-button {
   border-radius: 10px;
   color: var(--blackColor);

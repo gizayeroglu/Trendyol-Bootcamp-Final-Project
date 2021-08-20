@@ -19,74 +19,90 @@ function GamePage() {
   const dragCard = useRef();
   const dragCardHolder = useRef();
 
+
   const handleDragStart = (e, { cardHolderIndex, cardIndex }) => {
-    dragCard.current = { cardHolderIndex, cardIndex };
+    dragCard.current = {x:e.pageX, y:e.pageY, targetCard:e.target, cardHolderIndex, cardIndex };
+    e.dataTransfer.setDragImage(new Image("0", "0"), -10, -10);
     dragCardHolder.current = e.target;
-    dragCardHolder.current.addEventListener('dragend', handleDragEnd);
-
-    setTimeout(() => {
-      e.target.style.display = 'none';
-
-      let currentNode = e.target.nextSibling;
-
-      while (currentNode) {
-        currentNode.style.display = 'none';
-        currentNode = currentNode.nextSibling;
-      }
-    }, 0);
+    dragCardHolder.current.addEventListener('drag', handleDrag);
   };
 
-  const handleDragEnd = (e) => {
-    dragCardHolder.current.style.display = 'block';
+  const handleDrag = (e) => {
+    const { x, y, targetCard } = dragCard.current;
+    const moveX = e.pageX - x;
+    const moveY = e.pageY - y;
 
-    let currentNode = dragCardHolder.current.nextSibling;
+    let css;
+
+    if (e.pageX === 0) {
+      css = 
+      `z-index:0;
+      transform:translate(0px,0px);`;
+    } else {
+      css =
+      `z-index:9;
+      pointer-events: none;
+      transform: scale(1.05, 1.05) rotate(0deg) translate(${moveX}px, ${moveY}px);
+      position:relative;`
+    }
+
+    targetCard.style.cssText = css;
+    let currentNode = targetCard.nextSibling;
 
     while (currentNode) {
-      currentNode.style.display = 'block';
+      currentNode.style.cssText = css;
       currentNode = currentNode.nextSibling;
     }
-    dragCardHolder.current.removeEventListener('dragend', handleDragEnd);
-    dragCard.current = null;
-    dragCardHolder.current = null;
   };
-
+  
   const handleDrop = (e, { cardHolderIndex }) => { 
     e.preventDefault();
-
     const droppedCardHolderIndex = cardHolderIndex;
     const draggedCardHolderIndex = dragCard.current.cardHolderIndex;
     const draggedCardIndex = dragCard.current.cardIndex;
+    const targetCard =  dragCard.current.targetCard;
 
     const isValid = isValidDrop(deckData, droppedCardHolderIndex, draggedCardHolderIndex, draggedCardIndex);
 
-    if (droppedCardHolderIndex !== draggedCardHolderIndex && isValid) {
-      const newDeckData = [...deckData];
+    if(droppedCardHolderIndex === draggedCardHolderIndex || !isValid) {
+      const css = 'z-index:0;pointer-events:auto;';
+      targetCard.style.cssText = css;
+      let currentNode = targetCard.nextSibling;
 
-      const removedCardsCount = newDeckData[draggedCardHolderIndex].cards.length - draggedCardIndex;
-      const removedCards = newDeckData[draggedCardHolderIndex].cards.splice(draggedCardIndex, removedCardsCount);
-
-      //open last card of dragged holder
-      const lastCard = newDeckData[draggedCardHolderIndex].cards[newDeckData[draggedCardHolderIndex].cards.length - 1];
-      if (lastCard) {
-        lastCard.isOpen = true;
-        lastCard.isDraggable=true;
-      }
-      
-      const { isScore, cards } = checkSetOfCards([...newDeckData[droppedCardHolderIndex].cards, ...removedCards]);
-      newDeckData[droppedCardHolderIndex].cards = cards;
-
-      const updatedCardsData = updateCardDraggable(newDeckData);
-      setDeckData(updatedCardsData);
-
-      if(isScore) {
-        setGameScore(gameScore + 300);
-        setLastMove({}); // If the set is completed, clean last move state
-      } else {
-        setLastMove({droppedCardHolderIndex, draggedCardHolderIndex, removedCardsCount});
+      while (currentNode) {
+        currentNode.style.cssText = css;
+        currentNode = currentNode.nextSibling;
       }
 
-      dragCard.current = null;
+      return;
     }
+
+    const newDeckData = [...deckData];
+
+    const removedCardsCount = newDeckData[draggedCardHolderIndex].cards.length - draggedCardIndex;
+    const removedCards = newDeckData[draggedCardHolderIndex].cards.splice(draggedCardIndex, removedCardsCount);
+
+    //open last card of dragged holder
+    const lastCard = newDeckData[draggedCardHolderIndex].cards[newDeckData[draggedCardHolderIndex].cards.length - 1];
+    if (lastCard) {
+      lastCard.isOpen = true;
+      lastCard.isDraggable = true;
+    }
+    
+    const { isScore, cards } = checkSetOfCards([...newDeckData[droppedCardHolderIndex].cards, ...removedCards]);
+    newDeckData[droppedCardHolderIndex].cards = cards;
+
+    const updatedCardsData = updateCardDraggable(newDeckData);
+    setDeckData(updatedCardsData);
+
+    if(isScore) {
+      setGameScore(gameScore + 300);
+      setLastMove({}); // If the set is completed, clean last move state
+    } else {
+      setLastMove({droppedCardHolderIndex, draggedCardHolderIndex, removedCardsCount});
+    }
+
+    dragCard.current = null;
   };
 
   const dragOver = (e) => {

@@ -15,10 +15,11 @@
 }
 .card-back {
   background: url("../../assets/spider-solitaire-card-back.webp");
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center center;
   display: block !important;
+  pointer-events: none;
 }
 .card-back > span {
   display: none;
@@ -42,6 +43,7 @@
   top: 2px;
   left: 5px;
   position: absolute;
+  pointer-events: none;
   font-size: 17px;
   font-weight: 700;
 }
@@ -52,6 +54,7 @@
   bottom: 2px;
   right: 5px;
   position: absolute;
+  pointer-events: none;
   font-size: 17px;
   font-weight: 700;
   transform:rotate(180deg);
@@ -59,7 +62,7 @@
 :is(.content-left-top, .content-right-bottom) img {
   width: 13px;
 }
-
+/*! highlighted class for hint */
 .highlighted {
   background-color: var(--primaryYellowColor);
 }

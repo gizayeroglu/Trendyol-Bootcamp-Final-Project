@@ -20,7 +20,7 @@ function HomePage() {
           <h4>
             <b>Play Reversed Spider Solitare</b>
           </h4>
-          <p>Easy</p>
+          <p>One Suit Solitaire</p>
         </div>
       </div>
     </>
