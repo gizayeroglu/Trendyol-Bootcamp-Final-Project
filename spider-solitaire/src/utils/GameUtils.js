@@ -92,7 +92,7 @@ export const updateCardDraggable = (deckData) => {
       const childNode = cards[i];
       const parentNode = cards[i-1];
 
-      if(!parentNode || parentNode.isOpen !== true) continue;
+      if(!parentNode || !parentNode.isOpen) continue;
 
       if(childNode && parentNode.value + 1 === childNode.value && childNode.isDraggable === true) {
         parentNode.isDraggable=true;
