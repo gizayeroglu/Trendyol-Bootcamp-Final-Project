@@ -19,7 +19,8 @@
   background-repeat: no-repeat;
   background-position: center center;
   display: block !important;
-  pointer-events: none;
+  pointer-events:none;
+  z-index:0;
 }
 .card-back > span {
   display: none;

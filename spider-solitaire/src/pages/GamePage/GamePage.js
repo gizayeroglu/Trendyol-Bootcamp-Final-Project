@@ -15,6 +15,7 @@ function GamePage() {
   const [gameScore, setGameScore] = useState(0);
   const [highestScore, setHighestScore] = useState(0);
   const [lastMove, setLastMove] = useState({});
+  const [isLastCardOpenedWhenDrop, setIsLastCardOpenedWhenDrop] = useState(false);
 
   const dragCard = useRef();
   const dragCardHolder = useRef();
@@ -33,8 +34,8 @@ function GamePage() {
     const moveY = e.pageY - y;
 
     let css;
-
-    if (e.pageX === 0) {
+    
+    if (e.pageX === 0 ) {
       css = 
       `z-index:0;
       transform:translate(0px,0px);`;
@@ -84,9 +85,13 @@ function GamePage() {
 
     //open last card of dragged holder
     const lastCard = newDeckData[draggedCardHolderIndex].cards[newDeckData[draggedCardHolderIndex].cards.length - 1];
-    if (lastCard) {
+    if (lastCard && !lastCard.isOpen) {
       lastCard.isOpen = true;
       lastCard.isDraggable = true;
+      setIsLastCardOpenedWhenDrop(true); //if the last card opened with drag it will be return closed on undo last move
+    } else if(lastCard){
+      lastCard.isDraggable = true;
+      setIsLastCardOpenedWhenDrop(false);
     }
     
     const { isScore, cards } = checkSetOfCards([...newDeckData[droppedCardHolderIndex].cards, ...removedCards]);
@@ -166,6 +171,12 @@ function GamePage() {
       
       const droppedCards = newDeckData[droppedIndexBefore].cards;
       const restoredCards = droppedCards.splice(droppedCards.length-removedCardsCount, removedCardsCount);
+
+      if(newDeckData[draggedIndexBefore].cards.length && isLastCardOpenedWhenDrop) {
+          //close the prev card when you undo your last movement if it is opened on drag 
+        newDeckData[draggedIndexBefore].cards[newDeckData[draggedIndexBefore].cards.length-1].isOpen = false;
+        newDeckData[draggedIndexBefore].cards[newDeckData[draggedIndexBefore].cards.length-1].isDraggable = false;
+      }
 
       newDeckData[draggedIndexBefore].cards = [...newDeckData[draggedIndexBefore].cards, ...restoredCards];
       
