@@ -11,7 +11,7 @@ function CardHolder(props) {
       onDragOver={onDragOver}
       className='card-holder-container'
     >
-      {props.children}
+      {props.children.length ? props.children : <div className='empty-card-area'></div>}
     </div>
   );
 }

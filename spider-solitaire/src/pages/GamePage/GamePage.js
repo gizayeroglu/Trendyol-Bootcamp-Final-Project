@@ -220,14 +220,14 @@ function GamePage() {
         <button className='refresh-page-button' onClick={() => window.location.reload(false)}>Restart</button>
       </div>
       <div className='game-area-top-containers'>
-         {gameScore >= 300 ? <Card isOpen='true' symbol='K' /> : <div className='game-completed-card-area'></div>}
-         {gameScore >= 600 ? <Card isOpen='true' symbol='K' /> : <div className='game-completed-card-area'></div>}
-         {gameScore >= 900 ? <Card isOpen='true' symbol='K' /> : <div className='game-completed-card-area'></div>}
-         {gameScore >= 1200 ? <Card isOpen='true' symbol='K' /> : <div className='game-completed-card-area'></div>}
-         {gameScore >= 1500 ? <Card isOpen='true' symbol='K' /> : <div className='game-completed-card-area'></div>}
-         {gameScore >= 1800 ? <Card isOpen='true' symbol='K' /> : <div className='game-completed-card-area'></div>}
-         {gameScore >= 2100 ? <Card isOpen='true' symbol='K' /> : <div className='game-completed-card-area'></div>}
-         {gameScore >= 2400 ? <Card isOpen='true' symbol='K' /> : <div className='game-completed-card-area'></div>}
+         {gameScore >= 300 ? <Card isOpen='true' symbol='K' /> : <div className='empty-card-area'></div>}
+         {gameScore >= 600 ? <Card isOpen='true' symbol='K' /> : <div className='empty-card-area'></div>}
+         {gameScore >= 900 ? <Card isOpen='true' symbol='K' /> : <div className='empty-card-area'></div>}
+         {gameScore >= 1200 ? <Card isOpen='true' symbol='K' /> : <div className='empty-card-area'></div>}
+         {gameScore >= 1500 ? <Card isOpen='true' symbol='K' /> : <div className='empty-card-area'></div>}
+         {gameScore >= 1800 ? <Card isOpen='true' symbol='K' /> : <div className='empty-card-area'></div>}
+         {gameScore >= 2100 ? <Card isOpen='true' symbol='K' /> : <div className='empty-card-area'></div>}
+         {gameScore >= 2400 ? <Card isOpen='true' symbol='K' /> : <div className='empty-card-area'></div>}
         <CardDistributor  getNewCards={distributeNewCards} />
       </div>
       <div className='game-area-container'>

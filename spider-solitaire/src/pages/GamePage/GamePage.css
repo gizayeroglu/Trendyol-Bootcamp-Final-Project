@@ -11,7 +11,7 @@
   justify-items: center;
   margin-top: -100px;
 }
-.game-completed-card-area {
+.empty-card-area {
   height: 126px;
   width: 91px;
 	border-radius: 10px;
@@ -81,7 +81,7 @@
 }
  
 @media only screen and (min-width:800px) and (max-width: 1200px) {
-  .game-completed-card-area {
+  .empty-card-area {
     height: 86px;
     width: 61px;
     min-width: 61px;
@@ -113,7 +113,7 @@
 }
 
 @media only screen and (min-width:500px) and (max-width:800px) {
-  .game-completed-card-area {
+  .empty-card-area {
     height: 61px;
     width: 41px;
     border-radius: 5px;
@@ -153,7 +153,7 @@
 }
 
 @media only screen and (max-width:500px) {
-  .game-completed-card-area {
+  .empty-card-area {
     height: 46px;
     width: 31px;
     border-radius: 5px;
