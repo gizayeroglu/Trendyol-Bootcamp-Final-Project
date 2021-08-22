@@ -1,6 +1,6 @@
 import React from 'react';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { configure, shallow, mount } from 'enzyme';
+import { configure, shallow } from 'enzyme';
 
 import HomePage from '../../pages/HomePage/HomePage';
 

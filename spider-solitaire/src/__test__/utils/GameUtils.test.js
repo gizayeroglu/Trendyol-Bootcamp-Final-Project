@@ -200,8 +200,8 @@ describe('Game Utils Tests', () => {
 
 		it('should make the card draggable if the card is the last card in its holder', () => {
 			const deckData = [
-					{name: 'cardholder0', cards: []},
-					{name: 'cardholder1', cards: [{symbol: '7', isOpen: false, isDraggable: false, value: 7}]},
+				{name: 'cardholder0', cards: []},
+				{name: 'cardholder1', cards: [{symbol: '7', isOpen: false, isDraggable: false, value: 7}]},
 			];
 
 			const settingCardDraggability = updateCardDraggable(deckData);

@@ -1,8 +1,6 @@
 import React from 'react';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { configure, mount, shallow } from 'enzyme';
-// import { render, fireEvent } from '@testing-library/react';
-// import { MemoryRouter } from 'react-router-dom';
 
 import GoBack from '../../components/GoBack/GoBack';
 

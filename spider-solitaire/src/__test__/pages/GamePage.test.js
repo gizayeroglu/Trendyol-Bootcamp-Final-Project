@@ -3,7 +3,6 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { configure, shallow, mount } from 'enzyme';
 
 import GamePage from '../../pages/GamePage/GamePage';
-import Card from '../../components/Card/Card';
 
 configure({ adapter: new Adapter() });
 
