@@ -88,7 +88,7 @@ function GamePage() {
     if (lastCard && !lastCard.isOpen) {
       lastCard.isOpen = true;
       lastCard.isDraggable = true;
-      setIsLastCardOpenedWhenDrop(true); //if the last card opened with drag it will be return closed on undo last move
+      setIsLastCardOpenedWhenDrop(true); //if the last card opened with drop event, it will be closed on undo last move
     } else if(lastCard){
       lastCard.isDraggable = true;
       setIsLastCardOpenedWhenDrop(false);
