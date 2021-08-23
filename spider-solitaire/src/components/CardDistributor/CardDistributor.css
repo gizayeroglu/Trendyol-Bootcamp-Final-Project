@@ -3,6 +3,7 @@
   align-items: flex-start;
   grid-template-columns: repeat(auto-fill, 20%);
   padding-right: 10px;
+  position: relative;
 }
 .distubitor-card {
   height: 130px; 

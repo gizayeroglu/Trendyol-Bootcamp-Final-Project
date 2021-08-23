@@ -1,6 +1,8 @@
 .card-holder-container {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  position: relative;
   height: 350px;
   min-width: 95px;
   min-height: 140px;

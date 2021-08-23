@@ -4,7 +4,9 @@
   --white: #e8e8e6;
   --red: #e74c3c;
 }
-
+.game-area-top-containers > .card{
+  margin-bottom: 0;
+}
 .game-area-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
