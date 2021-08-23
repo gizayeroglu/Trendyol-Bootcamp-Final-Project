@@ -9,9 +9,16 @@
 
 You must arrange the cards in order starting with A to K.
 
-You must complete 8 set (A 2 3 4 5 6 7 8 9 10 J Q K) to win the game.
+You can try to complete the set by dragging the cards.
+
+You can not drag the closed cards.
+
+If you don't drag the card to a suitable position the card will revert to its current position.
+
+You must complete 8 sets (A 2 3 4 5 6 7 8 9 10 J Q K) to win the game.
 
 You can only undo the last move you made. If you undo your last move and click again the system will show you the warning message "There is no last move".
+You can not undo your move after a set is completed or after receiving new ten cards from the card distributor.
 
 If you want to withdraw a card from the distributor, make sure that all holders have cards.
 
